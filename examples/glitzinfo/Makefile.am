@@ -2,6 +2,16 @@ INCLUDES = $(GLITZ_INC)
 
 noinst_PROGRAMS =
 
+if GLITZ_BUILD_CGL_BACKEND
+noinst_PROGRAMS += glitzinfo-cgl
+
+glitzinfo_cgl_CFLAGS = $(GLITZ_CGL_CFLAGS) -DGLITZ_CGL_BACKEND
+
+glitzinfo_cgl_SOURCES = glitzinfo.c
+
+glitzinfo_cgl_LDADD = $(GLITZ_LIB) $(GLITZ_CGL_LIBS)
+endif
+
 if GLITZ_BUILD_AGL_BACKEND
 noinst_PROGRAMS += glitzinfo-agl
 
