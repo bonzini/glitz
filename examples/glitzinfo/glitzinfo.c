@@ -40,6 +40,10 @@
 #include <glitz-agl.h>
 #endif
 
+#ifdef GLITZ_CGL_BACKEND
+#include <glitz-cgl.h>
+#endif
+
 static void
 print_features (unsigned long features)
 {
@@ -245,6 +249,29 @@ main (int argc, char **argv)
     }
 #endif
 
+#ifdef GLITZ_CGL_BACKEND
+    /* Cannot make a window, it's too expensive.  Find a reasonably lame
+       window format and use it to create a pbuffer.  */
+    i = 0;
+    while ((dformat = glitz_cgl_find_window_format (0, 0, i)) != NULL
+	    && (dformat->doublebuffer
+		|| dformat->stencil_size
+		|| dformat->depth_size))
+	i++;
+    if (!dformat)
+    {
+	fprintf (stderr, "Error: couldn't find drawable format\n");
+	return 1;
+    }
+
+    drawable = glitz_cgl_create_pbuffer_drawable (dformat, 1, 1);
+    if (!drawable)
+    {
+	fprintf (stderr, "Error: couldn't create glitz pbuffer drawable\n");
+	return 1;
+    }
+#endif
+
     print_features (glitz_drawable_get_features (drawable));
 
     printf ("\nWindow formats:\n");
@@ -268,6 +295,11 @@ main (int argc, char **argv)
 
 #ifdef GLITZ_AGL_BACKEND
     while (print_format (glitz_agl_find_window_format (0, 0, i)))
+	i++;
+#endif
+
+#ifdef GLITZ_CGL_BACKEND
+    while (print_format (glitz_cgl_find_window_format (0, 0, i)))
 	i++;
 #endif
 
@@ -341,6 +373,10 @@ main (int argc, char **argv)
 
 #ifdef GLITZ_AGL_BACKEND
     glitz_agl_fini ();
+#endif
+
+#ifdef GLITZ_CGL_BACKEND
+    glitz_cgl_fini ();
 #endif
 
     return 0;
