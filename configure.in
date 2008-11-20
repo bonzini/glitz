@@ -104,15 +104,26 @@ dnl ===========================================================================
 
 PKG_PROG_PKG_CONFIG
 PKG_CHECK_EXISTS([libpng12], [enable_png=yes], [enable_png=no])
+PKG_CHECK_EXISTS([cairo-glitz], [enable_cairogears=$enable_png], [enable_cairogears=no])
 
 if test $enable_png = yes ; then
    PKG_CHECK_MODULES(LIBPNG, [libpng12])
 fi
 
+if test $enable_cairogears = yes ; then
+   dnl Check cairo here, we do not want the -lglitz option.
+   dnl However, we have to remove -I.../glitz manually.
+   PKG_CHECK_MODULES(CAIRO, [cairo])
+   CAIRO_CFLAGS=`echo " $CAIRO_CFLAGS" | sed 's, -I[[^ ]]*/glitz *,,' `
+fi
+
 AM_CONDITIONAL(HAVE_LIBPNG, [test "x$enable_png" = xyes])
+AM_CONDITIONAL(HAVE_CAIRO, [test "x$enable_cairogears" = xyes])
 
 AC_SUBST(LIBPNG_CFLAGS)
 AC_SUBST(LIBPNG_LIBS)
+AC_SUBST(CAIRO_CFLAGS)
+AC_SUBST(CAIRO_LIBS)
 
 dnl ===========================================================================
 
@@ -323,6 +334,7 @@ src/agl/glitz-agl.pc
 src/egl/glitz-egl.pc
 src/wgl/glitz-wgl.pc
 examples/Makefile
+examples/cairogears/Makefile
 examples/glitzinfo/Makefile
 examples/renderer-test/Makefile
 ])
