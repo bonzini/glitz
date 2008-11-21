@@ -35,10 +35,12 @@
 #include <Carbon/Carbon.h>
 #include <AGL/agl.h>
 
-#define GLITZ_AGL_FEATURE_PBUFFER_MASK             (1L << 0)
-#define GLITZ_AGL_FEATURE_MULTISAMPLE_MASK         (1L << 1)
-#define GLITZ_AGL_FEATURE_PBUFFER_MULTISAMPLE_MASK (1L << 2)
-#define GLITZ_AGL_FEATURE_TEXTURE_RECTANGLE_MASK   (1L << 3)
+#define GLITZ_AGL_FEATURE_PBUFFER_MASK               (1L << 0)
+#define GLITZ_AGL_FEATURE_MULTISAMPLE_MASK           (1L << 1)
+#define GLITZ_AGL_FEATURE_PBUFFER_MULTISAMPLE_MASK   (1L << 2)
+#define GLITZ_AGL_FEATURE_PBUFFER_DOUBLEBUFFER_MASK  (1L << 3)
+#define GLITZ_AGL_FEATURE_PBUFFER_DEPTH_STENCIL_MASK (1L << 4)
+#define GLITZ_AGL_FEATURE_TEXTURE_RECTANGLE_MASK     (1L << 5)
 
 typedef struct _glitz_agl_drawable glitz_agl_drawable_t;
 
