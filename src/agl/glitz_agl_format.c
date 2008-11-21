@@ -275,22 +275,30 @@ glitz_agl_query_formats (glitz_agl_thread_info_t *thread_info)
 	} else
 	    format.d.samples = 1;
 
-	if (thread_info->agl_feature_mask & GLITZ_AGL_FEATURE_PBUFFER_MASK) {
-	    if (format.d.color.red_size && format.d.color.green_size &&
-		format.d.color.blue_size && format.d.color.alpha_size &&
-		format.d.doublebuffer == 0 && format.d.stencil_size == 0 &&
-		format.d.depth_size == 0) {
+	format.types |= GLITZ_DRAWABLE_TYPE_PBUFFER_MASK;
+	if ((thread_info->agl_feature_mask &
+	     GLITZ_AGL_FEATURE_PBUFFER_MASK) == 0)
+	    format.types &= ~GLITZ_DRAWABLE_TYPE_PBUFFER_MASK;
 
-		if (thread_info->agl_feature_mask &
-		    GLITZ_AGL_FEATURE_PBUFFER_MULTISAMPLE_MASK)
-		    format.types |= GLITZ_DRAWABLE_TYPE_PBUFFER_MASK;
-		else if (format.d.samples == 1)
-		    format.types |= GLITZ_DRAWABLE_TYPE_PBUFFER_MASK;
-		else
-		    format.types &= ~GLITZ_DRAWABLE_TYPE_PBUFFER_MASK;
-	    } else
-		format.types &= ~GLITZ_DRAWABLE_TYPE_PBUFFER_MASK;
-	} else
+	else if (format.d.color.red_size == 0 ||
+		 format.d.color.green_size == 0 ||
+		 format.d.color.blue_size == 0 ||
+		 format.d.color.alpha_size == 0)
+	    format.types &= ~GLITZ_DRAWABLE_TYPE_PBUFFER_MASK;
+
+	else if ((thread_info->agl_feature_mask &
+		  GLITZ_AGL_FEATURE_PBUFFER_DOUBLEBUFFER_MASK) == 0
+		 && format.d.doublebuffer)
+	    format.types &= ~GLITZ_DRAWABLE_TYPE_PBUFFER_MASK;
+
+	else if ((thread_info->agl_feature_mask &
+		  GLITZ_AGL_FEATURE_PBUFFER_MULTISAMPLE_MASK) == 0
+		 && format.d.samples > 1)
+	    format.types &= ~GLITZ_DRAWABLE_TYPE_PBUFFER_MASK;
+
+	else if ((thread_info->agl_feature_mask &
+		  GLITZ_AGL_FEATURE_PBUFFER_DEPTH_STENCIL_MASK) == 0
+		 && (format.d.depth_size > 0 || format.d.stencil_size > 0))
 	    format.types &= ~GLITZ_DRAWABLE_TYPE_PBUFFER_MASK;
 
 	if (format.d.color.red_size ||
