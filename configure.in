@@ -222,7 +222,7 @@ AH_TEMPLATE([PTHREADS], [Define if PTHREADS are supported])
 if test "x$use_agl" = "xyes"; then
   AC_MSG_CHECKING([for AGL.framework])
   save_libs="$LIBS"
-  LIBS="-framework AGL"
+  LIBS="$LIBS -framework AGL"
   AC_TRY_LINK_FUNC(aglCreateContext, [use_agl=yes], [use_agl=no])
   LIBS="$save_libs"
   AC_MSG_RESULT([$use_agl])
@@ -236,6 +236,8 @@ if test "x$use_agl" = "xyes"; then
 
     LIBS="$save_LIBS"
 
+    AGL_LIBS="-framework AGL -framework OpenGL -framework Carbon"
+    CARBON_LIBS=
     if test "x$use_pthreads" = "xyes"
     then
       AGL_LIBS="$AGL_LIBS -lpthread"
@@ -253,6 +255,8 @@ else
   AM_CONDITIONAL(GLITZ_BUILD_AGL_BACKEND, false)
 fi
 
+AC_SUBST(CARBON_CFLAGS)
+AC_SUBST(CARBON_LIBS)
 AC_SUBST(AGL_CFLAGS)
 AC_SUBST(AGL_LIBS)
 AC_SUBST(GLITZ_AGL_CFLAGS)

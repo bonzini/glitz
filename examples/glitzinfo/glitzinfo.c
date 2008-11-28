@@ -226,7 +226,7 @@ main (int argc, char **argv)
 
     glitz_agl_init ();
 
-    dformat = glitz_agl_find_drawable_format (0, 0, 0);
+    dformat = glitz_agl_find_window_format (0, 0, 0);
     if (!dformat)
     {
 	fprintf (stderr, "Error: couldn't find drawable format\n");

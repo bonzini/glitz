@@ -9,7 +9,7 @@ glitzinfo_agl_CFLAGS = $(GLITZ_AGL_CFLAGS) -DGLITZ_AGL_BACKEND
 
 glitzinfo_agl_SOURCES = glitzinfo.c
 
-glitzinfo_agl_LDADD = $(GLITZ_LIB) $(GLITZ_AGL_LIBS)
+glitzinfo_agl_LDADD = $(GLITZ_LIB) $(GLITZ_AGL_LIBS) $(CARBON_LIBS)
 endif
 
 if GLITZ_BUILD_EGL_BACKEND
