@@ -230,6 +230,17 @@ glitz_agl_create_pbuffer_drawable
 </SECTION>
 
 <SECTION>
+<FILE>glitz-cgl</FILE>
+<TITLE>CGL Backend</TITLE>
+glitz_cgl_init
+glitz_cgl_fini
+glitz_cgl_find_window_format
+glitz_cgl_find_pbuffer_format
+glitz_cgl_create_pbuffer_drawable
+glitz_cgl_create_drawable_for_view
+</SECTION>
+
+<SECTION>
 <FILE>glitz-egl</FILE>
 <TITLE>EGL Backend</TITLE>
 glitz_egl_init

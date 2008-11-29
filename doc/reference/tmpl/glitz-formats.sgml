@@ -152,13 +152,6 @@ Formats
 
 
 
-<!-- ##### MACRO GLITZ_FORMAT_Y_INVERTED_MASK ##### -->
-<para>
-
-</para>
-
-
-
 <!-- ##### STRUCT glitz_drawable_format_t ##### -->
 <para>
 
@@ -170,7 +163,6 @@ Formats
 @stencil_size: 
 @samples: 
 @doublebuffer: 
-@y_inverted: 
 
 <!-- ##### STRUCT glitz_format_t ##### -->
 <para>
