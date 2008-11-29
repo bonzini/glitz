@@ -1,0 +1,135 @@
+<!-- ##### SECTION Title ##### -->
+Texture
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### TYPEDEF glitz_texture_object_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION glitz_texture_object_create ##### -->
+<para>
+
+</para>
+
+@surface: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_texture_object_destroy ##### -->
+<para>
+
+</para>
+
+@texture: 
+
+
+<!-- ##### FUNCTION glitz_texture_object_reference ##### -->
+<para>
+
+</para>
+
+@texture: 
+
+
+<!-- ##### ENUM glitz_texture_filter_type_t ##### -->
+<para>
+
+</para>
+
+@GLITZ_TEXTURE_FILTER_TYPE_MAG: 
+@GLITZ_TEXTURE_FILTER_TYPE_MIN: 
+
+<!-- ##### ENUM glitz_texture_filter_t ##### -->
+<para>
+
+</para>
+
+@GLITZ_TEXTURE_FILTER_NEAREST: 
+@GLITZ_TEXTURE_FILTER_LINEAR: 
+@GLITZ_TEXTURE_FILTER_NEAREST_MIPMAP_NEAREST: 
+@GLITZ_TEXTURE_FILTER_LINEAR_MIPMAP_NEAREST: 
+@GLITZ_TEXTURE_FILTER_NEAREST_MIPMAP_LINEAR: 
+@GLITZ_TEXTURE_FILTER_LINEAR_MIPMAP_LINEAR: 
+
+<!-- ##### FUNCTION glitz_texture_object_set_filter ##### -->
+<para>
+
+</para>
+
+@texture: 
+@type: 
+@filter: 
+
+
+<!-- ##### ENUM glitz_texture_wrap_type_t ##### -->
+<para>
+
+</para>
+
+@GLITZ_TEXTURE_WRAP_TYPE_S: 
+@GLITZ_TEXTURE_WRAP_TYPE_T: 
+
+<!-- ##### ENUM glitz_texture_wrap_t ##### -->
+<para>
+
+</para>
+
+@GLITZ_TEXTURE_WRAP_CLAMP: 
+@GLITZ_TEXTURE_WRAP_CLAMP_TO_EDGE: 
+@GLITZ_TEXTURE_WRAP_CLAMP_TO_BORDER: 
+@GLITZ_TEXTURE_WRAP_REPEAT: 
+@GLITZ_TEXTURE_WRAP_MIRRORED_REPEAT: 
+
+<!-- ##### FUNCTION glitz_texture_object_set_wrap ##### -->
+<para>
+
+</para>
+
+@texture: 
+@type: 
+@wrap: 
+
+
+<!-- ##### FUNCTION glitz_texture_object_set_border_color ##### -->
+<para>
+
+</para>
+
+@texture: 
+@color: 
+
+
+<!-- ##### ENUM glitz_texture_target_t ##### -->
+<para>
+
+</para>
+
+@GLITZ_TEXTURE_TARGET_2D: 
+@GLITZ_TEXTURE_TARGET_RECT: 
+
+<!-- ##### FUNCTION glitz_texture_object_get_target ##### -->
+<para>
+
+</para>
+
+@texture: 
+@Returns: 
+
+

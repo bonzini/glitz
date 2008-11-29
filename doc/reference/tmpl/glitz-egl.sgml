@@ -1,0 +1,87 @@
+<!-- ##### SECTION Title ##### -->
+EGL Backend
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### FUNCTION glitz_egl_init ##### -->
+<para>
+
+</para>
+
+@gl_library: 
+
+
+<!-- ##### FUNCTION glitz_egl_fini ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION glitz_egl_find_window_config ##### -->
+<para>
+
+</para>
+
+@egl_display: 
+@egl_screen: 
+@mask: 
+@templ: 
+@count: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_egl_find_pbuffer_config ##### -->
+<para>
+
+</para>
+
+@egl_display: 
+@egl_screen: 
+@mask: 
+@templ: 
+@count: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_egl_create_surface ##### -->
+<para>
+
+</para>
+
+@egl_display: 
+@egl_screen: 
+@format: 
+@egl_surface: 
+@width: 
+@height: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_egl_create_pbuffer_surface ##### -->
+<para>
+
+</para>
+
+@egl_display: 
+@egl_screen: 
+@format: 
+@width: 
+@height: 
+@Returns: 
+
+

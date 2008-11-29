@@ -1,0 +1,78 @@
+<!-- ##### SECTION Title ##### -->
+Pixel operations
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### ENUM glitz_pixel_scanline_order_t ##### -->
+<para>
+
+</para>
+
+@GLITZ_PIXEL_SCANLINE_ORDER_TOP_DOWN: 
+@GLITZ_PIXEL_SCANLINE_ORDER_BOTTOM_UP: 
+
+<!-- ##### STRUCT glitz_pixel_masks_t ##### -->
+<para>
+
+</para>
+
+@bpp: 
+@alpha_mask: 
+@red_mask: 
+@green_mask: 
+@blue_mask: 
+
+<!-- ##### STRUCT glitz_pixel_format_t ##### -->
+<para>
+
+</para>
+
+@fourcc: 
+@masks: 
+@xoffset: 
+@skip_lines: 
+@bytes_per_line: 
+@scanline_order: 
+
+<!-- ##### FUNCTION glitz_set_pixels ##### -->
+<para>
+
+</para>
+
+@dst: 
+@x_dst: 
+@y_dst: 
+@width: 
+@height: 
+@format: 
+@buffer: 
+
+
+<!-- ##### FUNCTION glitz_get_pixels ##### -->
+<para>
+
+</para>
+
+@src: 
+@x_src: 
+@y_src: 
+@width: 
+@height: 
+@format: 
+@buffer: 
+
+

@@ -1,0 +1,241 @@
+<!-- ##### SECTION Title ##### -->
+Surface
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### MACRO GLITZ_SURFACE_UNNORMALIZED_MASK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### STRUCT glitz_surface_attributes_t ##### -->
+<para>
+
+</para>
+
+@unnormalized: 
+
+<!-- ##### FUNCTION glitz_surface_create ##### -->
+<para>
+
+</para>
+
+@drawable: 
+@format: 
+@width: 
+@height: 
+@mask: 
+@attributes: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_surface_destroy ##### -->
+<para>
+
+</para>
+
+@surface: 
+
+
+<!-- ##### FUNCTION glitz_surface_reference ##### -->
+<para>
+
+</para>
+
+@surface: 
+
+
+<!-- ##### FUNCTION glitz_surface_attach ##### -->
+<para>
+
+</para>
+
+@surface: 
+@drawable: 
+@buffer: 
+
+
+<!-- ##### FUNCTION glitz_surface_detach ##### -->
+<para>
+
+</para>
+
+@surface: 
+
+
+<!-- ##### FUNCTION glitz_surface_flush ##### -->
+<para>
+
+</para>
+
+@surface: 
+
+
+<!-- ##### FUNCTION glitz_surface_get_drawable ##### -->
+<para>
+
+</para>
+
+@surface: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_surface_get_attached_drawable ##### -->
+<para>
+
+</para>
+
+@surface: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_surface_set_transform ##### -->
+<para>
+
+</para>
+
+@surface: 
+@transform: 
+
+
+<!-- ##### FUNCTION glitz_surface_set_fill ##### -->
+<para>
+
+</para>
+
+@surface: 
+@fill: 
+
+
+<!-- ##### FUNCTION glitz_surface_set_component_alpha ##### -->
+<para>
+
+</para>
+
+@surface: 
+@component_alpha: 
+
+
+<!-- ##### FUNCTION glitz_surface_set_filter ##### -->
+<para>
+
+</para>
+
+@surface: 
+@filter: 
+@params: 
+@n_params: 
+
+
+<!-- ##### FUNCTION glitz_surface_set_dither ##### -->
+<para>
+
+</para>
+
+@surface: 
+@dither: 
+
+
+<!-- ##### FUNCTION glitz_surface_get_width ##### -->
+<para>
+
+</para>
+
+@surface: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_surface_get_height ##### -->
+<para>
+
+</para>
+
+@surface: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_surface_get_status ##### -->
+<para>
+
+</para>
+
+@surface: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_surface_get_format ##### -->
+<para>
+
+</para>
+
+@surface: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_surface_translate_point ##### -->
+<para>
+
+</para>
+
+@surface: 
+@src: 
+@dst: 
+
+
+<!-- ##### FUNCTION glitz_surface_set_clip_region ##### -->
+<para>
+
+</para>
+
+@surface: 
+@x_origin: 
+@y_origin: 
+@box: 
+@n_box: 
+
+
+<!-- ##### FUNCTION glitz_surface_valid_target ##### -->
+<para>
+
+</para>
+
+@surface: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_surface_bind_tex_image ##### -->
+<para>
+
+</para>
+
+@surface: 
+@drawable: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_surface_release_tex_image ##### -->
+<para>
+
+</para>
+
+@surface: 
+@drawable: 
+@Returns: 
+
+

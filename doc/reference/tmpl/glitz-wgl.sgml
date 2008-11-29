@@ -1,0 +1,96 @@
+<!-- ##### SECTION Title ##### -->
+WGL Backend
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT glitz_wgl_thread_starter_arg_t ##### -->
+<para>
+
+</para>
+
+@user_thread_function: 
+@user_thread_function_arg: 
+
+<!-- ##### FUNCTION glitz_wgl_thread_starter ##### -->
+<para>
+
+</para>
+
+@arg: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_wgl_init ##### -->
+<para>
+
+</para>
+
+@gl_library: 
+
+
+<!-- ##### FUNCTION glitz_wgl_fini ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION glitz_wgl_find_window_format ##### -->
+<para>
+
+</para>
+
+@mask: 
+@templ: 
+@count: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_wgl_find_pbuffer_format ##### -->
+<para>
+
+</para>
+
+@mask: 
+@templ: 
+@count: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_wgl_create_drawable_for_window ##### -->
+<para>
+
+</para>
+
+@format: 
+@window: 
+@width: 
+@height: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_wgl_create_pbuffer_drawable ##### -->
+<para>
+
+</para>
+
+@format: 
+@width: 
+@height: 
+@Returns: 
+
+

@@ -1,3 +1,3 @@
-SUBDIRS = . src examples
+SUBDIRS = . src doc examples
 
-EXTRA_DIST = COPYING
+EXTRA_DIST = COPYING gtk-doc.make
