@@ -12,8 +12,9 @@ glitz_wgl_def =
 libglitz_wgl_export_symbols =
 endif
 
+glitz_includedir = $(includedir)/glitz
 lib_LTLIBRARIES = libglitz-wgl.la
-include_HEADERS = glitz-wgl.h
+glitz_include_HEADERS = glitz-wgl.h
 
 libglitz_wgl_la_SOURCES =     \
 	glitz-wgl.h	      \

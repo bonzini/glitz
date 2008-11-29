@@ -7,4 +7,4 @@ Name: libglitz
 Description: OpenGL compositing library
 Version: @VERSION@
 Libs: -L${libdir} -lglitz -lm
-Cflags: -I${includedir}
+Cflags: -I${includedir}/glitz

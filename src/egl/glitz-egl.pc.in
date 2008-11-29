@@ -8,4 +8,4 @@ Description: OpenGL compositing library (EGL backend)
 Version: @VERSION@
 Requires: glitz
 Libs: -L${libdir} -lglitz-egl @EGL_LIBS@
-Cflags: -I${includedir} @EGL_CFLAGS@
+Cflags: -I${includedir}/glitz @EGL_CFLAGS@
