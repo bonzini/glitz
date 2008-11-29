@@ -16,7 +16,7 @@ glitz_common_sources = \
 	glitz.c \
 	glitz_common.h
 
-INCLUDES = $(GLITZ_GLX_CFLAGS) $(GLITZ_EGL_CFLAGS) $(GLITZ_AGL_CFLAGS) \
+INCLUDES = $(GLITZ_INC) $(GLITZ_GLX_CFLAGS) $(GLITZ_EGL_CFLAGS) $(GLITZ_AGL_CFLAGS) \
            $(LIBPNG_CFLAGS)
 
 if GLITZ_BUILD_GLX_BACKEND
