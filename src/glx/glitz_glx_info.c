@@ -517,6 +517,7 @@ glitz_glx_screen_info_get (Display *display,
     glitz_program_map_init (&screen_info->program_map);
 
     screen_info->root_context = (GLXContext) 0;
+    screen_info->indirect = 0;
     screen_info->glx_feature_mask = 0;
 
     if (glXQueryExtension (display, &error_base, &event_base)) {
@@ -577,3 +578,16 @@ glitz_glx_fini (void)
     _glitz_glx_thread_info_destroy (info);
 }
 slim_hidden_def(glitz_glx_fini);
+
+void
+glitz_glx_set_render_type (Display           *display,
+                           int               screen,
+                           glitz_bool_t      direct)
+{
+    glitz_glx_screen_info_t     *screen_info;
+    
+    screen_info = glitz_glx_screen_info_get (display, screen);
+    
+    screen_info->indirect = !direct;
+}
+slim_hidden_def(glitz_glx_set_render_type);
