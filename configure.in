@@ -2,9 +2,11 @@
 
 # Package version number, (as distinct from shared library version)
 # This must be manually synchronized with the version in src/glitz.h
-m4_define([GLITZ_VERSION], 0.5.7)
+m4_define(glitz_version_major, 0)
+m4_define(glitz_version_minor, 5)
+m4_define(glitz_version_micro, 7)
 
-AC_INIT(glitz, [GLITZ_VERSION])
+AC_INIT(glitz, [glitz_version_major.glitz_version_minor.glitz_version_micro])
 
 AC_CONFIG_AUX_DIR(config)
 
@@ -12,6 +14,9 @@ AM_INIT_AUTOMAKE([dist-bzip2 foreign])
 AM_CONFIG_HEADER(config.h)
 
 AM_MAINTAINER_MODE
+
+GLITZ_VERSION=glitz_version_major().glitz_version_minor().glitz_version_micro()
+AC_SUBST(GLITZ_VERSION)
 
 dnl ===========================================================================
 
@@ -99,6 +104,11 @@ GLITZ_INC='-I$(top_builddir)/src'
 
 AC_SUBST(GLITZ_LIB)
 AC_SUBST(GLITZ_INC)
+
+dnl ===========================================================================
+dnl Check for gtk-doc and docbook
+
+GTK_DOC_CHECK([1.6])
 
 dnl ===========================================================================
 
@@ -344,6 +354,9 @@ src/glx/glitz-glx.pc
 src/agl/glitz-agl.pc
 src/egl/glitz-egl.pc
 src/wgl/glitz-wgl.pc
+doc/Makefile
+doc/reference/Makefile
+doc/reference/version.xml
 examples/Makefile
 examples/cairogears/Makefile
 examples/glitzinfo/Makefile

@@ -1,0 +1,159 @@
+<!-- ##### SECTION Title ##### -->
+Drawable
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### ENUM glitz_drawable_buffer_t ##### -->
+<para>
+
+</para>
+
+@GLITZ_DRAWABLE_BUFFER_FRONT_COLOR: 
+@GLITZ_DRAWABLE_BUFFER_BACK_COLOR: 
+
+<!-- ##### FUNCTION glitz_create_drawable ##### -->
+<para>
+
+</para>
+
+@other: 
+@format: 
+@width: 
+@height: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_create_pbuffer_drawable ##### -->
+<para>
+
+</para>
+
+@other: 
+@format: 
+@width: 
+@height: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_drawable_destroy ##### -->
+<para>
+
+</para>
+
+@drawable: 
+
+
+<!-- ##### FUNCTION glitz_drawable_reference ##### -->
+<para>
+
+</para>
+
+@drawable: 
+
+
+<!-- ##### FUNCTION glitz_drawable_update_size ##### -->
+<para>
+
+</para>
+
+@drawable: 
+@width: 
+@height: 
+
+
+<!-- ##### FUNCTION glitz_drawable_get_width ##### -->
+<para>
+
+</para>
+
+@drawable: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_drawable_get_height ##### -->
+<para>
+
+</para>
+
+@drawable: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_drawable_swap_buffer_region ##### -->
+<para>
+
+</para>
+
+@drawable: 
+@x_origin: 
+@y_origin: 
+@box: 
+@n_box: 
+
+
+<!-- ##### FUNCTION glitz_drawable_swap_buffers ##### -->
+<para>
+
+</para>
+
+@drawable: 
+
+
+<!-- ##### FUNCTION glitz_drawable_flush ##### -->
+<para>
+
+</para>
+
+@drawable: 
+
+
+<!-- ##### FUNCTION glitz_drawable_finish ##### -->
+<para>
+
+</para>
+
+@drawable: 
+
+
+<!-- ##### FUNCTION glitz_drawable_get_features ##### -->
+<para>
+
+</para>
+
+@drawable: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_drawable_get_format ##### -->
+<para>
+
+</para>
+
+@drawable: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_drawable_get_gl_string ##### -->
+<para>
+
+</para>
+
+@drawable: 
+@name: 
+@Returns: 
+
+

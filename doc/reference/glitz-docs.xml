@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+                "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<book lang="en" id="glitz" xmlns:xi="http://www.w3.org/2003/XInclude"> 
+<title>Glitz: An OpenGL image compositing Library</title>
+  <bookinfo>
+    <title>Glitz: An OpenGL image compositing Library</title>
+    <releaseinfo>for Glitz &version;</releaseinfo>
+  </bookinfo>
+
+  <chapter>
+    <title>Glitz core</title>
+    <xi:include href="xml/glitz-types.xml"/>
+    <xi:include href="xml/glitz-formats.xml"/>
+    <xi:include href="xml/glitz-drawable.xml"/>
+    <xi:include href="xml/glitz-surface.xml"/>
+    <xi:include href="xml/glitz-texture.xml"/>
+    <xi:include href="xml/glitz-context.xml"/>
+    <xi:include href="xml/glitz-buffer.xml"/>
+    <xi:include href="xml/glitz-pixels.xml"/>
+    <xi:include href="xml/glitz-drawing.xml"/>
+  </chapter>
+  <chapter>
+    <title>Glitz backends</title>
+    <xi:include href="xml/glitz-agl.xml"/>
+    <xi:include href="xml/glitz-egl.xml"/>
+    <xi:include href="xml/glitz-glx.xml"/>
+    <xi:include href="xml/glitz-wgl.xml"/>
+  </chapter>
+</book>

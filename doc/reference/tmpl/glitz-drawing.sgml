@@ -1,0 +1,259 @@
+<!-- ##### SECTION Title ##### -->
+Drawing
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### ENUM glitz_primitive_t ##### -->
+<para>
+
+</para>
+
+@GLITZ_PRIMITIVE_POINTS: 
+@GLITZ_PRIMITIVE_LINES: 
+@GLITZ_PRIMITIVE_LINE_STRIP: 
+@GLITZ_PRIMITIVE_LINE_LOOP: 
+@GLITZ_PRIMITIVE_TRIANGLES: 
+@GLITZ_PRIMITIVE_TRIANGLE_STRIP: 
+@GLITZ_PRIMITIVE_TRIANGLE_FAN: 
+@GLITZ_PRIMITIVE_QUADS: 
+@GLITZ_PRIMITIVE_QUAD_STRIP: 
+@GLITZ_PRIMITIVE_POLYGON: 
+
+<!-- ##### ENUM glitz_data_type_t ##### -->
+<para>
+
+</para>
+
+@GLITZ_DATA_TYPE_SHORT: 
+@GLITZ_DATA_TYPE_INT: 
+@GLITZ_DATA_TYPE_FLOAT: 
+@GLITZ_DATA_TYPE_DOUBLE: 
+
+<!-- ##### ENUM glitz_coordinate_size_t ##### -->
+<para>
+
+</para>
+
+@GLITZ_COORDINATE_SIZE_X: 
+@GLITZ_COORDINATE_SIZE_XY: 
+
+<!-- ##### STRUCT glitz_coordinate_attribute_t ##### -->
+<para>
+
+</para>
+
+@type: 
+@size: 
+@offset: 
+
+<!-- ##### MACRO GLITZ_VERTEX_ATTRIBUTE_SRC_COORD_MASK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GLITZ_VERTEX_ATTRIBUTE_MASK_COORD_MASK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### STRUCT glitz_vertex_format_t ##### -->
+<para>
+
+</para>
+
+@primitive: 
+@type: 
+@bytes_per_vertex: 
+@attributes: 
+@src: 
+@mask: 
+
+<!-- ##### STRUCT glitz_bitmap_format_t ##### -->
+<para>
+
+</para>
+
+@scanline_order: 
+@bytes_per_line: 
+@pad: 
+
+<!-- ##### ENUM glitz_geometry_type_t ##### -->
+<para>
+
+</para>
+
+@GLITZ_GEOMETRY_TYPE_NONE: 
+@GLITZ_GEOMETRY_TYPE_VERTEX: 
+@GLITZ_GEOMETRY_TYPE_BITMAP: 
+
+<!-- ##### FUNCTION glitz_set_geometry ##### -->
+<para>
+
+</para>
+
+@dst: 
+@type: 
+@format: 
+@buffer: 
+
+
+<!-- ##### FUNCTION glitz_set_array ##### -->
+<para>
+
+</para>
+
+@dst: 
+@first: 
+@size: 
+@count: 
+@x_off: 
+@y_off: 
+
+
+<!-- ##### TYPEDEF glitz_multi_array_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION glitz_multi_array_create ##### -->
+<para>
+
+</para>
+
+@size: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_multi_array_destroy ##### -->
+<para>
+
+</para>
+
+@array: 
+
+
+<!-- ##### FUNCTION glitz_multi_array_reference ##### -->
+<para>
+
+</para>
+
+@array: 
+
+
+<!-- ##### FUNCTION glitz_multi_array_add ##### -->
+<para>
+
+</para>
+
+@array: 
+@first: 
+@size: 
+@count: 
+@x_off: 
+@y_off: 
+
+
+<!-- ##### FUNCTION glitz_multi_array_reset ##### -->
+<para>
+
+</para>
+
+@array: 
+
+
+<!-- ##### FUNCTION glitz_set_multi_array ##### -->
+<para>
+
+</para>
+
+@dst: 
+@array: 
+@x_off: 
+@y_off: 
+
+
+<!-- ##### FUNCTION glitz_add_trapezoids ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@offset: 
+@size: 
+@type: 
+@mask: 
+@traps: 
+@n_traps: 
+@n_added: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_add_traps ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@offset: 
+@size: 
+@type: 
+@mask: 
+@traps: 
+@n_traps: 
+@n_added: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_composite ##### -->
+<para>
+
+</para>
+
+@op: 
+@src: 
+@mask: 
+@dst: 
+@x_src: 
+@y_src: 
+@x_mask: 
+@y_mask: 
+@x_dst: 
+@y_dst: 
+@width: 
+@height: 
+
+
+<!-- ##### FUNCTION glitz_copy_area ##### -->
+<para>
+
+</para>
+
+@src: 
+@dst: 
+@x_src: 
+@y_src: 
+@width: 
+@height: 
+@x_dst: 
+@y_dst: 
+
+

@@ -1,0 +1,356 @@
+<!-- ##### SECTION Title ##### -->
+Types
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### TYPEDEF glitz_bool_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF glitz_short_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF glitz_int_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF glitz_float_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF glitz_double_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF glitz_fixed16_16_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF glitz_drawable_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF glitz_surface_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT glitz_rectangle_t ##### -->
+<para>
+
+</para>
+
+@y: 
+@width: 
+@height: 
+
+<!-- ##### STRUCT glitz_box_t ##### -->
+<para>
+
+</para>
+
+@y1: 
+@x2: 
+@y2: 
+
+<!-- ##### STRUCT glitz_point_fixed_t ##### -->
+<para>
+
+</para>
+
+@x: 
+@y: 
+
+<!-- ##### STRUCT glitz_line_fixed_t ##### -->
+<para>
+
+</para>
+
+@p1: 
+@p2: 
+
+<!-- ##### STRUCT glitz_trapezoid_t ##### -->
+<para>
+
+</para>
+
+@top: 
+@bottom: 
+@left: 
+@right: 
+
+<!-- ##### STRUCT glitz_span_fixed_t ##### -->
+<para>
+
+</para>
+
+@left: 
+@right: 
+@y: 
+
+<!-- ##### STRUCT glitz_trap_t ##### -->
+<para>
+
+</para>
+
+@top: 
+@bottom: 
+
+<!-- ##### STRUCT glitz_transform_t ##### -->
+<para>
+
+</para>
+
+@matrix: 
+
+<!-- ##### STRUCT glitz_color_t ##### -->
+<para>
+
+</para>
+
+@red: 
+@green: 
+@blue: 
+@alpha: 
+
+<!-- ##### ENUM glitz_filter_t ##### -->
+<para>
+
+</para>
+
+@GLITZ_FILTER_NEAREST: 
+@GLITZ_FILTER_BILINEAR: 
+@GLITZ_FILTER_CONVOLUTION: 
+@GLITZ_FILTER_GAUSSIAN: 
+@GLITZ_FILTER_LINEAR_GRADIENT: 
+@GLITZ_FILTER_RADIAL_GRADIENT: 
+
+<!-- ##### ENUM glitz_operator_t ##### -->
+<para>
+
+</para>
+
+@GLITZ_OPERATOR_CLEAR: 
+@GLITZ_OPERATOR_SRC: 
+@GLITZ_OPERATOR_DST: 
+@GLITZ_OPERATOR_OVER: 
+@GLITZ_OPERATOR_OVER_REVERSE: 
+@GLITZ_OPERATOR_IN: 
+@GLITZ_OPERATOR_IN_REVERSE: 
+@GLITZ_OPERATOR_OUT: 
+@GLITZ_OPERATOR_OUT_REVERSE: 
+@GLITZ_OPERATOR_ATOP: 
+@GLITZ_OPERATOR_ATOP_REVERSE: 
+@GLITZ_OPERATOR_XOR: 
+@GLITZ_OPERATOR_ADD: 
+
+<!-- ##### ENUM glitz_status_t ##### -->
+<para>
+
+</para>
+
+@GLITZ_STATUS_SUCCESS: 
+@GLITZ_STATUS_NO_MEMORY: 
+@GLITZ_STATUS_BAD_COORDINATE: 
+@GLITZ_STATUS_NOT_SUPPORTED: 
+@GLITZ_STATUS_CONTENT_DESTROYED: 
+
+<!-- ##### FUNCTION glitz_status_string ##### -->
+<para>
+
+</para>
+
+@status: 
+@Returns: 
+
+
+<!-- ##### ENUM glitz_gl_string_t ##### -->
+<para>
+
+</para>
+
+@GLITZ_GL_STRING_VENDOR: 
+@GLITZ_GL_STRING_RENDERER: 
+@GLITZ_GL_STRING_VERSION: 
+@GLITZ_GL_STRING_EXTENSIONS: 
+
+<!-- ##### ENUM glitz_fill_t ##### -->
+<para>
+
+</para>
+
+@GLITZ_FILL_TRANSPARENT: 
+@GLITZ_FILL_NEAREST: 
+@GLITZ_FILL_REPEAT: 
+@GLITZ_FILL_REFLECT: 
+
+<!-- ##### MACRO GLITZ_FEATURE_TEXTURE_RECTANGLE_MASK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GLITZ_FEATURE_TEXTURE_NON_POWER_OF_TWO_MASK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GLITZ_FEATURE_TEXTURE_MIRRORED_REPEAT_MASK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GLITZ_FEATURE_TEXTURE_BORDER_CLAMP_MASK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GLITZ_FEATURE_MULTISAMPLE_MASK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GLITZ_FEATURE_MULTISAMPLE_FILTER_HINT_MASK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GLITZ_FEATURE_MULTITEXTURE_MASK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GLITZ_FEATURE_TEXTURE_ENV_COMBINE_MASK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GLITZ_FEATURE_TEXTURE_ENV_DOT3_MASK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GLITZ_FEATURE_FRAGMENT_PROGRAM_MASK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GLITZ_FEATURE_VERTEX_BUFFER_OBJECT_MASK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GLITZ_FEATURE_PIXEL_BUFFER_OBJECT_MASK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GLITZ_FEATURE_PER_COMPONENT_RENDERING_MASK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GLITZ_FEATURE_BLEND_COLOR_MASK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GLITZ_FEATURE_PACKED_PIXELS_MASK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GLITZ_FEATURE_MULTI_DRAW_ARRAYS_MASK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GLITZ_FEATURE_FRAMEBUFFER_OBJECT_MASK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GLITZ_FEATURE_COPY_SUB_BUFFER_MASK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GLITZ_FEATURE_DIRECT_RENDERING_MASK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GLITZ_FEATURE_TEXTURE_FROM_PIXMAP_MASK ##### -->
+<para>
+
+</para>
+
+
+
