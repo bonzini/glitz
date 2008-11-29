@@ -86,7 +86,7 @@ _glitz_glx_format_compare (const void *elem1,
 	    score[i] -= 1000;
     }
 
-    return score[1] - score[0];
+    return score[1] - score[0] - (format[1]->d.depth - format[0]->d.depth);
 }
 
 static void
@@ -143,6 +143,7 @@ _glitz_glx_query_formats (glitz_glx_screen_info_t *screen_info)
 	if (value != 0)
 	    continue;
 
+	format.d.depth = visuals[i].depth;
 	glXGetConfig (display, &visuals[i], GLX_RED_SIZE, &value);
 	format.d.color.red_size = (unsigned short) value;
 	glXGetConfig (display, &visuals[i], GLX_GREEN_SIZE, &value);
@@ -161,7 +162,7 @@ _glitz_glx_query_formats (glitz_glx_screen_info_t *screen_info)
 	format.d.scanline_order = (value) ? 
 				  GLITZ_PIXEL_SCANLINE_ORDER_BOTTOM_UP : 
 				  GLITZ_PIXEL_SCANLINE_ORDER_TOP_DOWN;
-
+	
 	if (screen_info->glx_feature_mask &
 	    GLITZ_GLX_FEATURE_VISUAL_RATING_MASK)
 	{
@@ -228,6 +229,7 @@ _glitz_glx_query_formats_using_fbconfigs (glitz_glx_screen_info_t *screen_info)
     for (i = 0; i < num_configs; i++)
     {
 	int value;
+	XVisualInfo* vinfo;
 
 	if ((glx->get_fbconfig_attrib (display, fbconfigs[i],
 				       GLX_RENDER_TYPE, &value) != 0) ||
@@ -243,7 +245,14 @@ _glitz_glx_query_formats_using_fbconfigs (glitz_glx_screen_info_t *screen_info)
 				  GLX_DRAWABLE_TYPE, &value);
 	if (!((value & GLX_WINDOW_BIT) || (value & GLX_PBUFFER_BIT)))
 	    continue;
-
+	
+	vinfo = glx->get_visual_from_fbconfig (display, fbconfigs[i]);
+	if (vinfo)
+	{
+	    format.d.depth = vinfo->depth;
+	    XFree(vinfo);
+	}
+	
 	format.types = 0;
 	if (value & GLX_WINDOW_BIT)
 	    format.types |= GLITZ_DRAWABLE_TYPE_WINDOW_MASK;

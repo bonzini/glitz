@@ -99,8 +99,9 @@ print_format (glitz_drawable_format_t *format)
 {
     if (format)
     {
-	printf ("0x%x\t%d/%d/%d/%d    \t%d\t%d\t%c\t%d\t%c\n",
+	printf ("0x%x\t%d\t%d/%d/%d/%d    \t%d\t%d\t%c\t%d\t%c\n",
 		(int) format->id,
+        format->depth,
 		format->color.red_size,
 		format->color.green_size,
 		format->color.blue_size,
@@ -277,7 +278,7 @@ main (int argc, char **argv)
     print_features (glitz_drawable_get_features (drawable));
 
     printf ("\nWindow formats:\n");
-    printf ("id\tr/g/b/a    \tdepth\tstencil\tdb\tsamples\tscanline\n");
+    printf ("id\tvdepth\tr/g/b/a    \tdepth\tstencil\tdb\tsamples\tscanline\n");
     printf ("-------------------------------------"
 	    "-------------------------------------\n");
 
@@ -306,7 +307,7 @@ main (int argc, char **argv)
 #endif
 
     printf ("\nPbuffer formats:\n");
-    printf ("id\tr/g/b/a    \tdepth\tstencil\tdb\tsamples\tscanline\n");
+    printf ("id\tvdepth\tr/g/b/a    \tdepth\tstencil\tdb\tsamples\tscanline\n");
     printf ("-------------------------------------"
 	    "-------------------------------------\n");
 
@@ -315,7 +316,7 @@ main (int argc, char **argv)
 	i++;
 
     printf ("\nOffscreen formats:\n");
-    printf ("id\tr/g/b/a    \tdepth\tstencil\tdb\tsamples\tscanline\n");
+    printf ("id\tvdepth\tr/g/b/a    \tdepth\tstencil\tdb\tsamples\tscanline\n");
     printf ("-------------------------------------"
 	    "-------------------------------------\n");
 

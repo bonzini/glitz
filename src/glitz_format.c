@@ -237,6 +237,9 @@ glitz_drawable_format_copy (const glitz_drawable_format_t *src,
                     
     if (mask & GLITZ_FORMAT_SCANLINE_ORDER_MASK)
 	dst->scanline_order = src->scanline_order;
+    
+    if (mask & GLITZ_FORMAT_DEPTH_MASK)
+	dst->depth = src->depth;
 }
 
 glitz_drawable_format_t *
@@ -290,6 +293,10 @@ glitz_drawable_format_find (glitz_int_drawable_format_t       *formats,
 	
 	if (mask & GLITZ_FORMAT_SCANLINE_ORDER_MASK)
 	    if (templ->d.scanline_order != formats->d.scanline_order)
+		continue;
+	
+	if (mask & GLITZ_FORMAT_DEPTH_MASK)
+	    if (templ->d.depth != formats->d.depth)
 		continue;
 
 	if (mask & GLITZ_INT_FORMAT_WINDOW_MASK)

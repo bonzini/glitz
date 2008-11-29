@@ -174,15 +174,17 @@ typedef struct _glitz_color_format_t {
   unsigned short alpha_size;
 } glitz_color_format_t;
 
-#define GLITZ_FORMAT_DEPTH_SIZE_MASK   		  (1L <<  6)
-#define GLITZ_FORMAT_STENCIL_SIZE_MASK 		  (1L <<  7)
-#define GLITZ_FORMAT_DOUBLEBUFFER_MASK		  (1L <<  8)
-#define GLITZ_FORMAT_SAMPLES_MASK      		  (1L <<  9)
-#define GLITZ_FORMAT_SCANLINE_ORDER_MASK	  (1L <<  10)
+#define GLITZ_FORMAT_DEPTH_SIZE_MASK              (1L <<  6)
+#define GLITZ_FORMAT_STENCIL_SIZE_MASK            (1L <<  7)
+#define GLITZ_FORMAT_DOUBLEBUFFER_MASK            (1L <<  8)
+#define GLITZ_FORMAT_SAMPLES_MASK                 (1L <<  9)
+#define GLITZ_FORMAT_SCANLINE_ORDER_MASK          (1L <<  10)
+#define GLITZ_FORMAT_DEPTH_MASK                   (1L <<  11)
 
 typedef struct _glitz_drawable_format_t {
   glitz_format_id_t            id;
   glitz_color_format_t         color;
+  unsigned short               depth;
   unsigned short               depth_size;
   unsigned short               stencil_size;
   unsigned short               samples;
