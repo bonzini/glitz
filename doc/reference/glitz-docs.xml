@@ -25,6 +25,7 @@
   <chapter>
     <title>Glitz backends</title>
     <xi:include href="xml/glitz-agl.xml"/>
+    <xi:include href="xml/glitz-cgl.xml"/>
     <xi:include href="xml/glitz-egl.xml"/>
     <xi:include href="xml/glitz-glx.xml"/>
     <xi:include href="xml/glitz-wgl.xml"/>

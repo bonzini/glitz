@@ -1,0 +1,7 @@
+GLITZ_FEATURE_TEXTURE_FROM_PIXMAP_MASK
+GLITZ_FORMAT_Y_INVERTED_MASK
+glitz_glx_create_drawable_for_pixmap
+glitz_glx_create_pixmap_drawable
+glitz_glx_get_xdrawable
+glitz_surface_bind_tex_image
+glitz_surface_release_tex_image

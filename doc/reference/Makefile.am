@@ -13,8 +13,26 @@ SCAN_OPTIONS=
 DOC_SOURCE_DIR=../../src
 
 # Used for dependencies
-HFILE_GLOB=$(top_srcdir)/src/*.h $(top_srcdir)/src/glx/*.h
-CFILE_GLOB=$(top_srcdir)/src/*.c $(top_srcdir)/src/*.h $(top_srcdir)/src/glx/*.c $(top_srcdir)/src/glx/*.h
+HFILE_GLOB= \
+	$(top_srcdir)/src/*.h \
+    $(top_srcdir)/src/agl/*.h \
+    $(top_srcdir)/src/cgl/*.h \
+    $(top_srcdir)/src/egl/*.h \
+    $(top_srcdir)/src/glx/*.h \
+    $(top_srcdir)/src/wgl/*.h
+    
+CFILE_GLOB=$(top_srcdir)/src/*.c \
+	$(top_srcdir)/src/*.h \
+	$(top_srcdir)/src/agl/*.c \
+	$(top_srcdir)/src/agl/*.h \
+	$(top_srcdir)/src/cgl/*.m \
+	$(top_srcdir)/src/cgl/*.h \
+	$(top_srcdir)/src/egl/*.c \
+	$(top_srcdir)/src/egl/*.h \
+	$(top_srcdir)/src/glx/*.c \
+	$(top_srcdir)/src/glx/*.h \
+	$(top_srcdir)/src/wgl/*.c \
+	$(top_srcdir)/src/wgl/*.h
 
 UNSUPPORTED_HFILES=	glitzint.h \
                     glitz_gl.h \
@@ -23,6 +41,8 @@ UNSUPPORTED_HFILES=	glitzint.h \
                     glitz_glxint.h \
                     glitz_aglext.h \
                     glitz_aglint.h \
+                    glitz_cglext.h \
+                    glitz_cglint.h \
                     glitz_eglext.h \
                     glitz_eglint.h \
                     glitz_wglext.h \
