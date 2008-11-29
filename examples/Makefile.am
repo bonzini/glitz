@@ -1,0 +1,1 @@
+SUBDIRS = glitzinfo renderer-test
