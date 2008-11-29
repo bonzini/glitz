@@ -240,7 +240,22 @@ _glitz_glx_proc_address_lookup (glitz_glx_screen_info_t *screen_info)
 	}
     } else
 	screen_info->glx_feature_mask &= ~GLITZ_GLX_FEATURE_PBUFFER_MASK;
-
+    
+    if (screen_info->glx_feature_mask & GLITZ_GLX_FEATURE_TEXTURE_FROM_PIXMAP_MASK)
+    {
+	screen_info->glx.bind_tex_image = (glitz_glx_bind_tex_image_t)
+	    glitz_glx_get_proc_address ("glXBindTexImageEXT",
+					(void *) screen_info);
+	
+	screen_info->glx.release_tex_image = (glitz_glx_release_tex_image_t)
+	    glitz_glx_get_proc_address ("glXReleaseTexImageEXT",
+					(void *) screen_info);
+	
+	if (!screen_info->glx.bind_tex_image || !screen_info->glx.release_tex_image)
+	    screen_info->glx_feature_mask &=
+				~GLITZ_GLX_FEATURE_TEXTURE_FROM_PIXMAP_MASK;
+    }
+    
     if (screen_info->glx_feature_mask &
 	GLITZ_GLX_FEATURE_MAKE_CURRENT_READ_MASK) {
 	if (screen_info->glx_version >= 1.3f) {

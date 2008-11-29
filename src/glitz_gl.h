@@ -276,6 +276,15 @@ typedef ptrdiff_t glitz_gl_sizeiptr_t;
 #define GLITZ_GL_ACTIVE_TEXTURE    0x84E0
 #define GLITZ_GL_MAX_TEXTURE_UNITS 0x84E2
 
+#define GLITZ_GL_TEXTURE_FORMAT_EXT                 0x20D5
+#define GLITZ_GL_TEXTURE_TARGET_EXT                 0x20D6
+#define GLITZ_GL_MIPMAP_TEXTURE_EXT                 0x20D7
+#define GLITZ_GL_TEXTURE_FORMAT_RGB_EXT             0x20D9
+#define GLITZ_GL_TEXTURE_FORMAT_RGBA_EXT            0x20DA
+#define GLITZ_GL_TEXTURE_2D_EXT                     0x20DC
+#define GLITZ_GL_TEXTURE_RECTANGLE_EXT              0x20DD
+#define GLITZ_GL_FRONT_LEFT_EXT                     0x20DE
+
 #define GLITZ_GL_MULTISAMPLE 0x809D
 
 #define GLITZ_GL_MULTISAMPLE_FILTER_HINT 0x8534

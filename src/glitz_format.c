@@ -452,3 +452,22 @@ glitz_find_pbuffer_format (glitz_drawable_t              *other,
 				       mask, &itempl, count);
 }
 slim_hidden_def(glitz_find_pbuffer_format);
+
+glitz_drawable_format_t *
+glitz_find_pixmap_format (glitz_drawable_t              *other,
+			   unsigned long                 mask,
+			   const glitz_drawable_format_t *templ,
+			   int                           count)
+{
+    glitz_int_drawable_format_t itempl;
+
+    glitz_drawable_format_copy (templ, &itempl.d, mask);
+
+    itempl.types = GLITZ_DRAWABLE_TYPE_WINDOW_MASK;
+    mask |= GLITZ_DRAWABLE_TYPE_WINDOW_MASK;
+
+    return glitz_drawable_format_find (other->backend->drawable_formats,
+				       other->backend->n_drawable_formats,
+				       mask, &itempl, count);
+}
+slim_hidden_def(glitz_find_pixmap_format);

@@ -272,7 +272,7 @@ _glitz_wgl_query_formats_using_pixel_format (glitz_wgl_screen_info_t *screen_inf
 	if (!ASK_QUESTION(WGL_DEPTH_BITS_ARB, &answer))
 	    continue;
 	format.d.depth_size = (unsigned short) answer;
-
+	
 	if (!ASK_QUESTION(WGL_STENCIL_BITS_ARB, &answer))
 	    continue;
 	format.d.stencil_size = (unsigned short) answer;

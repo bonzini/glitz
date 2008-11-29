@@ -280,6 +280,7 @@ glitz_glx_context_get (glitz_glx_screen_info_t *screen_info,
     context->backend.gl = &_glitz_glx_gl_proc_address;
 
     context->backend.create_pbuffer = glitz_glx_create_pbuffer;
+    context->backend.create_pixmap = glitz_glx_create_pixmap;
     context->backend.destroy = glitz_glx_destroy;
     context->backend.push_current = glitz_glx_push_current;
     context->backend.pop_current = glitz_glx_pop_current;
@@ -296,7 +297,12 @@ glitz_glx_context_get (glitz_glx_screen_info_t *screen_info,
 
     context->backend.draw_buffer = _glitz_drawable_draw_buffer;
     context->backend.read_buffer = _glitz_drawable_read_buffer;
-
+    
+    context->backend.bind_tex_image = glitz_glx_bind_tex_image;
+    context->backend.release_tex_image = glitz_glx_release_tex_image;
+    
+    context->backend.query_drawable = glitz_glx_query_drawable;
+    
     context->backend.drawable_formats = NULL;
     context->backend.n_drawable_formats = 0;
 
@@ -378,6 +384,9 @@ _glitz_glx_context_initialize (glitz_glx_screen_info_t *screen_info,
     if (glXIsDirect (screen_info->display_info->display, context->context))
 	context->backend.feature_mask |= GLITZ_FEATURE_DIRECT_RENDERING_MASK;
 
+    if (screen_info->glx_feature_mask & GLITZ_GLX_FEATURE_TEXTURE_FROM_PIXMAP_MASK)
+	context->backend.feature_mask |= GLITZ_FEATURE_TEXTURE_FROM_PIXMAP_MASK;
+    
     context->initialized = 1;
 }
 

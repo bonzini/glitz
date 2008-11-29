@@ -125,7 +125,8 @@ _glitz_glx_query_formats (glitz_glx_screen_info_t *screen_info)
     format.types          = GLITZ_DRAWABLE_TYPE_WINDOW_MASK;
     format.d.id           = 0;
     format.d.color.fourcc = GLITZ_FOURCC_RGB;
-
+    format.rgb_texture    = 0;
+    
     for (i = 0; i < num_visuals; i++)
     {
 	int value;
@@ -262,11 +263,38 @@ _glitz_glx_query_formats_using_fbconfigs (glitz_glx_screen_info_t *screen_info)
 
 	format.d.id           = 0;
 	format.d.color.fourcc = GLITZ_FOURCC_RGB;
-
+	format.rgb_texture = 0;
+        
 	glx->get_fbconfig_attrib (display, fbconfigs[i], GLX_FBCONFIG_ID,
 				  &value);
 	format.u.uval = value;
 
+	glx->get_fbconfig_attrib (display, fbconfigs[i], 
+                              GLX_BIND_TO_TEXTURE_RGBA_EXT, &value);
+	if (value)
+	{
+	    format.texture_format = GLITZ_GL_TEXTURE_FORMAT_RGBA_EXT;
+	    format.rgb_texture = 1;
+	}
+	else
+	{
+	    glx->get_fbconfig_attrib (display, fbconfigs[i], 
+				      GLX_BIND_TO_TEXTURE_RGB_EXT, &value);
+	    if (value)
+	    {
+		format.texture_format = GLITZ_GL_TEXTURE_FORMAT_RGB_EXT;
+		format.rgb_texture = 1;
+	    }
+	}
+	
+	glx->get_fbconfig_attrib (display, fbconfigs[i], 
+                              GLX_BIND_TO_TEXTURE_TARGETS_EXT, &value);
+	format.texture_target = value;
+	
+	glx->get_fbconfig_attrib (display, fbconfigs[i], 
+				  GLX_BIND_TO_MIPMAP_TEXTURE_EXT, &value);
+	format.mipmap = value;
+	
 	glx->get_fbconfig_attrib (display, fbconfigs[i], GLX_RED_SIZE, &value);
 	format.d.color.red_size = (unsigned short) value;
 	glx->get_fbconfig_attrib (display, fbconfigs[i], GLX_GREEN_SIZE,

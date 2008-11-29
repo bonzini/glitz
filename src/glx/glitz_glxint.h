@@ -44,6 +44,7 @@
 #define GLITZ_GLX_FEATURE_MULTISAMPLE_MASK         (1L << 5)
 #define GLITZ_GLX_FEATURE_PBUFFER_MULTISAMPLE_MASK (1L << 6)
 #define GLITZ_GLX_FEATURE_COPY_SUB_BUFFER_MASK     (1L << 7)
+#define GLITZ_GLX_FEATURE_TEXTURE_FROM_PIXMAP_MASK (1L << 8)
 
 typedef struct _glitz_glx_drawable glitz_glx_drawable_t;
 typedef struct _glitz_glx_screen_info_t glitz_glx_screen_info_t;
@@ -60,6 +61,8 @@ typedef struct _glitz_glx_static_proc_address_list_t {
     glitz_glx_make_context_current_t     make_context_current;
     glitz_glx_create_new_context_t       create_new_context;
     glitz_glx_copy_sub_buffer_t          copy_sub_buffer;
+    glitz_glx_bind_tex_image_t           bind_tex_image;
+    glitz_glx_release_tex_image_t        release_tex_image;
 } glitz_glx_static_proc_address_list_t;
 
 typedef struct _glitz_glx_thread_info_t {
@@ -117,6 +120,8 @@ struct _glitz_glx_drawable {
     glitz_glx_context_t     *context;
     GLXDrawable             drawable;
     GLXDrawable             pbuffer;
+    GLXPixmap               pixmap;
+    glitz_bool_t            owned;
     int                     width;
     int                     height;
 };
@@ -165,6 +170,12 @@ glitz_glx_create_pbuffer (void                    *abstract_templ,
 			  unsigned int            width,
 			  unsigned int            height);
 
+extern glitz_drawable_t __internal_linkage *
+glitz_glx_create_pixmap (void                    *abstract_templ,
+			 glitz_drawable_format_t *format,
+			 unsigned int            width,
+			 unsigned int            height);
+
 extern glitz_bool_t __internal_linkage
 glitz_glx_push_current (void               *abstract_drawable,
 			glitz_surface_t    *surface,
@@ -194,6 +205,27 @@ glitz_glx_copy_sub_buffer (void *abstract_drawable,
 			   int  width,
 			   int  height);
 
+extern glitz_bool_t __internal_linkage
+glitz_glx_bind_tex_image (void *abstract_drawable);
+
+extern glitz_bool_t __internal_linkage
+glitz_glx_release_tex_image (void *abstract_drawable);
+
+extern void __internal_linkage
+glitz_glx_query_drawable (void *abstract_drawable, int query, 
+                          unsigned int* value);
+
+extern GLXPixmap __internal_linkage
+glitz_glx_pixmap_create (glitz_glx_screen_info_t *screen_info,
+			 Pixmap                  pixmap,
+			 glitz_drawable_format_t *format,
+			 unsigned int             width,
+			 unsigned int             height);
+
+extern void __internal_linkage
+glitz_glx_pixmap_destroy (glitz_glx_screen_info_t *screen_info,
+			  GLXPixmap               pixmap);
+
 /* Avoid unnecessary PLT entries. */
 
 slim_hidden_proto(glitz_glx_init)
@@ -204,6 +236,7 @@ slim_hidden_proto(glitz_glx_find_pbuffer_format)
 slim_hidden_proto(glitz_glx_find_drawable_format_for_visual)
 slim_hidden_proto(glitz_glx_get_visual_info_from_format)
 slim_hidden_proto(glitz_glx_create_drawable_for_window)
+slim_hidden_proto(glitz_glx_create_drawable_for_pixmap)
 slim_hidden_proto(glitz_glx_create_pbuffer_drawable)
 
 #endif /* GLITZ_GLXINT_H_INCLUDED */

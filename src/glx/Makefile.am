@@ -17,7 +17,8 @@ libglitz_glx_la_SOURCES =     \
 	glitz_glx_context.c   \
 	glitz_glx_pbuffer.c   \
 	glitz_glxext.h	      \
-	glitz_glxint.h
+	glitz_glxint.h       \
+	glitz_glx_pixmap.c
 
 libglitz_glx_la_LDFLAGS = -version-info @VERSION_INFO@ -no-undefined
 libglitz_glx_la_LIBADD = $(GLITZ_LIB) $(GLX_LIBS)

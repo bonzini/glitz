@@ -326,7 +326,8 @@ typedef enum {
   GLITZ_FEATURE_MULTI_DRAW_ARRAYS_MASK        = (1L << 15),
   GLITZ_FEATURE_FRAMEBUFFER_OBJECT_MASK       = (1L << 16),
   GLITZ_FEATURE_COPY_SUB_BUFFER_MASK          = (1L << 17),
-  GLITZ_FEATURE_DIRECT_RENDERING_MASK         = (1L << 18)
+  GLITZ_FEATURE_DIRECT_RENDERING_MASK         = (1L << 18),
+  GLITZ_FEATURE_TEXTURE_FROM_PIXMAP_MASK      = (1L << 19)
 } glitz_feature_t;
 
 /* glitz_format.c */
@@ -511,6 +512,11 @@ glitz_find_pbuffer_format (glitz_drawable_t              *other,
 			   const glitz_drawable_format_t *templ,
 			   int                           count);
 
+glitz_drawable_format_t *
+glitz_find_pixmap_format (glitz_drawable_t              *other,
+			  unsigned long                 mask,
+			  const glitz_drawable_format_t *templ,
+			  int                           count);
 
 /* glitz_status.c */
 
@@ -573,6 +579,12 @@ glitz_create_pbuffer_drawable (glitz_drawable_t        *other,
 			       glitz_drawable_format_t *format,
 			       unsigned int            width,
 			       unsigned int            height);
+
+glitz_drawable_t *
+glitz_create_pixmap_drawable (glitz_drawable_t        *other,
+			      glitz_drawable_format_t *format,
+			      unsigned int            width,
+			      unsigned int            height);
 
 void
 glitz_drawable_destroy (glitz_drawable_t *drawable);
@@ -730,6 +742,14 @@ glitz_surface_set_clip_region (glitz_surface_t *surface,
 
 glitz_bool_t
 glitz_surface_valid_target (glitz_surface_t *surface);
+
+glitz_bool_t
+glitz_surface_bind_tex_image (glitz_surface_t *surface,
+                              glitz_drawable_t* drawable);
+
+glitz_bool_t
+glitz_surface_release_tex_image (glitz_surface_t *surface,
+                                 glitz_drawable_t* drawable);
 
 
 /* glitz_texture.c */

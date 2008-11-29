@@ -74,6 +74,14 @@ glitz_glx_get_visual_info_from_format (Display                 *display,
 				       int                     screen,
 				       glitz_drawable_format_t *format);
 
+Display*
+glitz_glx_get_display_from_drawable (glitz_drawable_t* drawable);
+
+int
+glitz_glx_get_screen_from_drawable (glitz_drawable_t* drawable);
+
+Drawable
+glitz_glx_get_drawable_from_drawable (glitz_drawable_t* drawable);
 
 /* glitz_glx_drawable.c */
 
@@ -84,6 +92,21 @@ glitz_glx_create_drawable_for_window (Display                 *display,
 				      Window                  window,
 				      unsigned int            width,
 				      unsigned int            height);
+
+glitz_drawable_t *
+glitz_glx_create_drawable_for_pixmap (Display                 *display,
+				      int                     screen,
+				      glitz_drawable_format_t *format,
+				      Pixmap                  pixmap,
+				      unsigned int            width,
+				      unsigned int            height);
+   
+glitz_drawable_t *
+glitz_glx_create_pixmap_drawable (Display                 *display,
+				  int                     screen,
+				  glitz_drawable_format_t *format,
+				  unsigned int            width,
+				  unsigned int            height);
 
 glitz_drawable_t *
 glitz_glx_create_pbuffer_drawable (Display                 *display,
