@@ -70,10 +70,10 @@ glitz_surface_create (glitz_drawable_t           *drawable,
     surface->format    = format;
     surface->box.x2    = (short) width;
     surface->box.y2    = (short) height;
-    surface->clip      = &surface->box;
-    surface->n_clip    = 1;
     surface->buffer    = GLITZ_GL_FRONT;
-
+    surface->clip      = NULL;
+    glitz_surface_set_clip_region (surface, 0, 0, NULL, 0);
+    
     if (width == 1 && height == 1)
     {
 	surface->flags |= GLITZ_SURFACE_FLAG_SOLID_MASK;
@@ -155,7 +155,10 @@ glitz_surface_destroy (glitz_surface_t *surface)
 
     if (surface->filter_params)
 	free (surface->filter_params);
-
+    
+    if (surface->clip)
+	free (surface->clip);
+    
     glitz_drawable_destroy (surface->drawable);
 
     free (surface);
@@ -978,16 +981,21 @@ glitz_surface_set_clip_region (glitz_surface_t *surface,
 			       glitz_box_t     *box,
 			       int             n_box)
 {
+    if (surface->clip)
+	free(surface->clip);
+    
     if (n_box)
     {
-	surface->clip   = box;
+	surface->clip = malloc(n_box * sizeof(glitz_box_t));
+	memcpy(surface->clip, box, sizeof(glitz_box_t) * n_box);
 	surface->n_clip = n_box;
 	surface->x_clip = x_origin;
 	surface->y_clip = y_origin;
     }
     else
     {
-	surface->clip   = &surface->box;
+	surface->clip = malloc(sizeof(glitz_box_t));
+	memcpy(surface->clip, &surface->box, sizeof(glitz_box_t));
 	surface->n_clip = 1;
 	surface->x_clip = surface->y_clip = 0;
     }
