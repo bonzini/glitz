@@ -246,7 +246,8 @@ glitz_agl_query_formats (glitz_agl_thread_info_t *thread_info)
 	    aglDestroyPixelFormat (pixel_format);
 	    continue;
 	}
-
+	
+	format.d.scanline_order = GLITZ_PIXEL_SCANLINE_ORDER_TOP_DOWN;
 	aglDescribePixelFormat (pixel_format, AGL_DOUBLEBUFFER, &value);
 	format.d.doublebuffer = (value)? 1: 0;
 

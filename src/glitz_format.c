@@ -179,10 +179,10 @@ _glitz_add_drawable_formats (glitz_gl_proc_address_list_t *gl,
     {
 	glitz_int_drawable_format_t format;
 	glitz_drawable_format_t     d[] = {
-	    { 0, { GLITZ_FOURCC_RGB, 8, 8, 8, 0 }, 0,  0, 1, 0 },
-	    { 0, { GLITZ_FOURCC_RGB, 8, 8, 8, 8 }, 0,  0, 1, 0 },
-	    { 0, { GLITZ_FOURCC_RGB, 8, 8, 8, 0 }, 24, 8, 1, 1 },
-	    { 0, { GLITZ_FOURCC_RGB, 8, 8, 8, 8 }, 24, 8, 1, 1 }
+	    { 0, { GLITZ_FOURCC_RGB, 8, 8, 8, 0 }, 0,  0, 1, 0, 32, GLITZ_PIXEL_SCANLINE_ORDER_TOP_DOWN },
+	    { 0, { GLITZ_FOURCC_RGB, 8, 8, 8, 8 }, 0,  0, 1, 0, 32, GLITZ_PIXEL_SCANLINE_ORDER_TOP_DOWN },
+	    { 0, { GLITZ_FOURCC_RGB, 8, 8, 8, 0 }, 24, 8, 1, 1, 32, GLITZ_PIXEL_SCANLINE_ORDER_TOP_DOWN },
+	    { 0, { GLITZ_FOURCC_RGB, 8, 8, 8, 8 }, 24, 8, 1, 1, 32, GLITZ_PIXEL_SCANLINE_ORDER_TOP_DOWN }
 	};
 	int			    i;
 
@@ -234,6 +234,12 @@ glitz_drawable_format_copy (const glitz_drawable_format_t *src,
 
     if (mask & GLITZ_FORMAT_SAMPLES_MASK)
 	dst->samples = src->samples;
+                    
+    if (mask & GLITZ_FORMAT_SCANLINE_ORDER_MASK)
+	dst->scanline_order = src->scanline_order;
+    
+    if (mask & GLITZ_FORMAT_DEPTH_MASK)
+	dst->depth = src->depth;
 }
 
 glitz_drawable_format_t *
@@ -283,6 +289,14 @@ glitz_drawable_format_find (glitz_int_drawable_format_t       *formats,
 
 	if (mask & GLITZ_FORMAT_SAMPLES_MASK)
 	    if (templ->d.samples != formats->d.samples)
+		continue;
+	
+	if (mask & GLITZ_FORMAT_SCANLINE_ORDER_MASK)
+	    if (templ->d.scanline_order != formats->d.scanline_order)
+		continue;
+	
+	if (mask & GLITZ_FORMAT_DEPTH_MASK)
+	    if (templ->d.depth != formats->d.depth)
 		continue;
 
 	if (mask & GLITZ_INT_FORMAT_WINDOW_MASK)
