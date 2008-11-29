@@ -89,8 +89,11 @@ print_features (unsigned long features)
     printf ("framebuffer object: %s\n",
 	    (features & GLITZ_FEATURE_FRAMEBUFFER_OBJECT_MASK)? "Yes":
 	    "No");
-	printf ("copy sub buffer: %s\n",
+    printf ("copy sub buffer: %s\n",
 	    (features & GLITZ_FEATURE_COPY_SUB_BUFFER_MASK)? "Yes":
+	    "No");
+    printf ("texture from pixmap: %s\n",
+	    (features & GLITZ_FEATURE_TEXTURE_FROM_PIXMAP_MASK)? "Yes":
 	    "No");
 }
 
