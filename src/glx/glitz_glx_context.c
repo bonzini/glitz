@@ -37,7 +37,8 @@ static void
 _glitz_glx_context_create (glitz_glx_screen_info_t *screen_info,
 			   XID                     visualid,
 			   GLXContext              share_list,
-			   glitz_glx_context_t     *context)
+			   glitz_glx_context_t     *context,
+			   glitz_bool_t		   direct)
 {
     int vis_info_count, i;
     XVisualInfo *vis_infos;
@@ -51,7 +52,7 @@ _glitz_glx_context_create (glitz_glx_screen_info_t *screen_info,
 
     context->context = glXCreateContext (screen_info->display_info->display,
 					 &vis_infos[i], share_list,
-					 GLITZ_GL_TRUE);
+					 direct);
     context->id = visualid;
     context->fbconfig = (GLXFBConfig) 0;
 
@@ -62,7 +63,8 @@ static void
 _glitz_glx_context_create_using_fbconfig (glitz_glx_screen_info_t *screen_info,
 					  XID                     fbconfigid,
 					  GLXContext              share_list,
-					  glitz_glx_context_t     *context)
+					  glitz_glx_context_t     *context,
+					  glitz_bool_t		  direct)
 {
     GLXFBConfig *fbconfigs;
     int i, n_fbconfigs;
@@ -90,13 +92,13 @@ _glitz_glx_context_create_using_fbconfig (glitz_glx_screen_info_t *screen_info,
     if (vinfo) {
 	context->context =
 	    glXCreateContext (screen_info->display_info->display,
-			      vinfo, share_list, GLITZ_GL_TRUE);
+			      vinfo, share_list, direct);
 	XFree (vinfo);
     } else if (glx->create_new_context)
 	context->context =
 	    glx->create_new_context (screen_info->display_info->display,
 				     fbconfigs[i], GLX_RGBA_TYPE, share_list,
-				     GLITZ_GL_TRUE);
+				     direct);
 
     if (context->context)
 	context->fbconfig = fbconfigs[i];
@@ -128,12 +130,14 @@ _glitz_glx_create_context (void                    *abstract_drawable,
 	_glitz_glx_context_create_using_fbconfig (screen_info,
 						  format_id,
 						  screen_info->root_context,
-						  context);
+						  context,
+						  !screen_info->indirect);
     else
 	_glitz_glx_context_create (screen_info,
 				   format_id,
 				   screen_info->root_context,
-				   context);
+				   context,
+				   !screen_info->indirect);
 
     return (glitz_context_t *) context;
 }
@@ -260,12 +264,14 @@ glitz_glx_context_get (glitz_glx_screen_info_t *screen_info,
 	_glitz_glx_context_create_using_fbconfig (screen_info,
 						  format_id,
 						  screen_info->root_context,
-						  context);
+						  context,
+						  !screen_info->indirect);
     else
 	_glitz_glx_context_create (screen_info,
 				   format_id,
 				   screen_info->root_context,
-				   context);
+				   context,
+				   !screen_info->indirect);
 
     if (!screen_info->root_context)
 	screen_info->root_context = context->context;

@@ -103,6 +103,7 @@ struct _glitz_glx_screen_info_t {
     glitz_glx_context_info_t           context_stack[GLITZ_CONTEXT_STACK_SIZE];
     int                                  context_stack_size;
     GLXContext                           root_context;
+    glitz_bool_t			 indirect;
     unsigned long                        glx_feature_mask;
     glitz_gl_float_t                     glx_version;
     glitz_glx_static_proc_address_list_t glx;
@@ -197,6 +198,7 @@ glitz_glx_copy_sub_buffer (void *abstract_drawable,
 
 slim_hidden_proto(glitz_glx_init)
 slim_hidden_proto(glitz_glx_fini)
+slim_hidden_proto(glitz_glx_set_render_type)
 slim_hidden_proto(glitz_glx_find_window_format)
 slim_hidden_proto(glitz_glx_find_pbuffer_format)
 slim_hidden_proto(glitz_glx_find_drawable_format_for_visual)
