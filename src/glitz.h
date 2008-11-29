@@ -112,6 +112,11 @@ typedef enum {
   GLITZ_OPERATOR_ADD
 } glitz_operator_t;
 
+typedef enum {
+  GLITZ_PIXEL_SCANLINE_ORDER_TOP_DOWN,
+  GLITZ_PIXEL_SCANLINE_ORDER_BOTTOM_UP
+} glitz_pixel_scanline_order_t;
+
 #define GLITZ_FEATURE_TEXTURE_RECTANGLE_MASK        (1L <<  0)
 #define GLITZ_FEATURE_TEXTURE_NON_POWER_OF_TWO_MASK (1L <<  1)
 #define GLITZ_FEATURE_TEXTURE_MIRRORED_REPEAT_MASK  (1L <<  2)
@@ -169,18 +174,20 @@ typedef struct _glitz_color_format_t {
   unsigned short alpha_size;
 } glitz_color_format_t;
 
-#define GLITZ_FORMAT_DEPTH_SIZE_MASK   (1L <<  6)
-#define GLITZ_FORMAT_STENCIL_SIZE_MASK (1L <<  7)
-#define GLITZ_FORMAT_DOUBLEBUFFER_MASK (1L <<  8)
-#define GLITZ_FORMAT_SAMPLES_MASK      (1L <<  9)
+#define GLITZ_FORMAT_DEPTH_SIZE_MASK   		  (1L <<  6)
+#define GLITZ_FORMAT_STENCIL_SIZE_MASK 		  (1L <<  7)
+#define GLITZ_FORMAT_DOUBLEBUFFER_MASK		  (1L <<  8)
+#define GLITZ_FORMAT_SAMPLES_MASK      		  (1L <<  9)
+#define GLITZ_FORMAT_SCANLINE_ORDER_MASK	  (1L <<  10)
 
 typedef struct _glitz_drawable_format_t {
-  glitz_format_id_t    id;
-  glitz_color_format_t color;
-  unsigned short       depth_size;
-  unsigned short       stencil_size;
-  unsigned short       samples;
-  glitz_bool_t         doublebuffer;
+  glitz_format_id_t            id;
+  glitz_color_format_t         color;
+  unsigned short               depth_size;
+  unsigned short               stencil_size;
+  unsigned short               samples;
+  glitz_bool_t                 doublebuffer;
+  glitz_pixel_scanline_order_t scanline_order;
 } glitz_drawable_format_t;
 
 typedef struct _glitz_format_t {
@@ -585,11 +592,6 @@ glitz_buffer_unmap (glitz_buffer_t *buffer);
 
 
 /* glitz_pixel.c */
-
-typedef enum {
-  GLITZ_PIXEL_SCANLINE_ORDER_TOP_DOWN,
-  GLITZ_PIXEL_SCANLINE_ORDER_BOTTOM_UP
-} glitz_pixel_scanline_order_t;
 
 typedef struct _glitz_pixel_masks {
   int           bpp;

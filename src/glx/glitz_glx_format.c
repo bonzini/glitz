@@ -157,6 +157,10 @@ _glitz_glx_query_formats (glitz_glx_screen_info_t *screen_info)
 	format.d.stencil_size = (unsigned short) value;
 	glXGetConfig (display, &visuals[i], GLX_DOUBLEBUFFER, &value);
 	format.d.doublebuffer = (value) ? 1: 0;
+	glXGetConfig (display, &visuals[i], GLX_Y_INVERTED_EXT, &value);
+	format.d.scanline_order = (value) ? 
+				  GLITZ_PIXEL_SCANLINE_ORDER_BOTTOM_UP : 
+				  GLITZ_PIXEL_SCANLINE_ORDER_TOP_DOWN;
 
 	if (screen_info->glx_feature_mask &
 	    GLITZ_GLX_FEATURE_VISUAL_RATING_MASK)
@@ -274,6 +278,11 @@ _glitz_glx_query_formats_using_fbconfigs (glitz_glx_screen_info_t *screen_info)
 	glx->get_fbconfig_attrib (display, fbconfigs[i], GLX_DOUBLEBUFFER,
 				  &value);
 	format.d.doublebuffer = (value)? 1: 0;
+	glx->get_fbconfig_attrib (display, fbconfigs[i], GLX_Y_INVERTED_EXT,
+				  &value);
+	format.d.scanline_order = (value) ? 
+				  GLITZ_PIXEL_SCANLINE_ORDER_BOTTOM_UP : 
+				  GLITZ_PIXEL_SCANLINE_ORDER_TOP_DOWN;
 	glx->get_fbconfig_attrib (display, fbconfigs[i], GLX_CONFIG_CAVEAT,
 				  &value);
 	switch (value) {

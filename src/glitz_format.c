@@ -234,6 +234,9 @@ glitz_drawable_format_copy (const glitz_drawable_format_t *src,
 
     if (mask & GLITZ_FORMAT_SAMPLES_MASK)
 	dst->samples = src->samples;
+                    
+    if (mask & GLITZ_FORMAT_SCANLINE_ORDER_MASK)
+	dst->scanline_order = src->scanline_order;
 }
 
 glitz_drawable_format_t *
@@ -283,6 +286,10 @@ glitz_drawable_format_find (glitz_int_drawable_format_t       *formats,
 
 	if (mask & GLITZ_FORMAT_SAMPLES_MASK)
 	    if (templ->d.samples != formats->d.samples)
+		continue;
+	
+	if (mask & GLITZ_FORMAT_SCANLINE_ORDER_MASK)
+	    if (templ->d.scanline_order != formats->d.scanline_order)
 		continue;
 
 	if (mask & GLITZ_INT_FORMAT_WINDOW_MASK)
