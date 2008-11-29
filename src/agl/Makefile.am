@@ -4,8 +4,9 @@ INCLUDES =	      \
 	$(GLITZ_INC)  \
 	$(AGL_CFLAGS)
 
+glitz_includedir = $(includedir)/glitz
 lib_LTLIBRARIES = libglitz-agl.la
-include_HEADERS = glitz-agl.h
+glitz_include_HEADERS = glitz-agl.h
 
 libglitz_agl_la_SOURCES =     \
 	glitz-agl.h	      \
