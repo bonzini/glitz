@@ -425,8 +425,14 @@ glitz_glx_find_drawable_format_for_visual (Display  *display,
 		}
 
 		if (format)
+		{
+		    if (visinfo)
+			XFree(visinfo);
 		    break;
+		}
 	    }
+	    if (visinfo)
+		XFree(visinfo);
 	}
 
 	if (fbconfigs)
