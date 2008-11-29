@@ -353,6 +353,11 @@ typedef struct _glitz_int_drawable_format_t {
     glitz_drawable_format_t d;
     unsigned int            types;
     int                     caveat;
+    glitz_bool_t            y_invert;
+    unsigned short          rgb_texture;
+    unsigned short          texture_format;
+    unsigned short          texture_target;
+    unsigned short          mipmap;
     union {
 	void	  *ptr;
 	long	  val;
@@ -367,6 +372,12 @@ typedef struct glitz_backend {
 				glitz_drawable_format_t *format,
 				unsigned int            width,
 				unsigned int            height);
+
+  glitz_drawable_t *
+  (*create_pixmap)            (void                    *drawable,
+			       glitz_drawable_format_t *format,
+			       unsigned int            width,
+			       unsigned int            height);
 
   void
   (*destroy)                   (void *drawable);
@@ -422,6 +433,15 @@ typedef struct glitz_backend {
   (*read_buffer)               (void                  *drawable,
 				const glitz_gl_enum_t buffer);
 
+  glitz_bool_t
+  (*bind_tex_image) (void *drawable);
+        
+  glitz_bool_t
+  (*release_tex_image) (void *drawable);
+  
+  void
+  (*query_drawable) (void *drawable, int query, unsigned int* value);
+    
   glitz_function_pointer_t
   (*get_proc_address)          (void       *context,
 				const char *name);
@@ -1068,8 +1088,10 @@ typedef glitz_fixed_16_16 glitz_fixed;
 
 slim_hidden_proto(glitz_find_drawable_format)
 slim_hidden_proto(glitz_find_pbuffer_format)
+slim_hidden_proto(glitz_find_pixmap_format)
 slim_hidden_proto(glitz_create_drawable)
 slim_hidden_proto(glitz_create_pbuffer_drawable)
+slim_hidden_proto(glitz_create_pixmap_drawable)
 slim_hidden_proto(glitz_drawable_get_width)
 slim_hidden_proto(glitz_drawable_get_height)
 slim_hidden_proto(glitz_drawable_swap_buffers)
@@ -1092,6 +1114,8 @@ slim_hidden_proto(glitz_surface_get_drawable)
 slim_hidden_proto(glitz_surface_get_attached_drawable)
 slim_hidden_proto(glitz_surface_translate_point)
 slim_hidden_proto(glitz_surface_set_clip_region)
+slim_hidden_proto(glitz_surface_bind_tex_image)
+slim_hidden_proto(glitz_surface_release_tex_image)
 slim_hidden_proto(glitz_set_rectangle)
 slim_hidden_proto(glitz_set_rectangles)
 slim_hidden_proto(glitz_set_geometry)

@@ -1001,3 +1001,94 @@ glitz_surface_set_clip_region (glitz_surface_t *surface,
     }
 }
 slim_hidden_def(glitz_surface_set_clip_region);
+
+glitz_bool_t
+glitz_surface_bind_tex_image(glitz_surface_t *surface, 
+                             glitz_drawable_t* drawable)
+{
+    glitz_bool_t ret = 0;
+    unsigned int target;
+    
+    if (!drawable->backend->query_drawable)
+	return ret;
+
+    if (!drawable->backend->bind_tex_image)
+	return ret;
+
+    GLITZ_GL_SURFACE (surface);
+
+    if (!surface->texture.name)
+	gl->gen_textures (1, &surface->texture.name);
+    
+    drawable->backend->query_drawable(drawable, GLITZ_GL_TEXTURE_TARGET_EXT,
+				      &target);
+    switch (target) 
+    {
+	case GLITZ_GL_TEXTURE_2D_EXT:
+	    surface->texture.target = GLITZ_GL_TEXTURE_2D;
+	    break;
+	case GLITZ_GL_TEXTURE_RECTANGLE_EXT:
+	    surface->texture.target = GLITZ_GL_TEXTURE_RECTANGLE;
+	    break;
+	default:
+	    return 0;
+    }
+    
+    surface->texture.flags |= GLITZ_TEXTURE_FLAG_ALLOCATED_MASK;
+    
+    glitz_surface_push_current (surface, GLITZ_DRAWABLE_CURRENT);
+    
+    gl->disable (GLITZ_GL_SCISSOR_TEST);
+    
+    glitz_texture_bind (gl, &surface->texture);
+    
+    gl->tex_parameter_i (surface->texture.target,
+			 GLITZ_GL_TEXTURE_MAG_FILTER,
+			 surface->texture.param.filter[0]);
+    gl->tex_parameter_i (surface->texture.target,
+			 GLITZ_GL_TEXTURE_MIN_FILTER,
+			 surface->texture.param.filter[1]);
+    
+    ret = drawable->backend->bind_tex_image(drawable);
+    
+    glitz_texture_unbind (gl, &surface->texture);
+    
+    gl->enable (GLITZ_GL_SCISSOR_TEST);
+    
+    glitz_surface_pop_current (surface);
+    
+    return ret;
+}
+slim_hidden_def(glitz_surface_bind_tex_image);
+
+glitz_bool_t
+glitz_surface_release_tex_image(glitz_surface_t *surface, 
+                                glitz_drawable_t* drawable)
+{
+    glitz_bool_t ret = 0;
+    
+    if (!drawable->backend->query_drawable)
+	return ret;
+    
+    if (!drawable->backend->release_tex_image)
+	return ret;
+    
+    GLITZ_GL_SURFACE (surface);
+    
+    glitz_surface_push_current (surface, GLITZ_DRAWABLE_CURRENT);
+    
+    gl->disable (GLITZ_GL_SCISSOR_TEST);
+    
+    glitz_texture_bind (gl, &surface->texture);
+    
+    ret = drawable->backend->release_tex_image(drawable);
+    
+    gl->enable (GLITZ_GL_SCISSOR_TEST);
+    
+    glitz_texture_unbind (gl, &surface->texture);
+    
+    glitz_surface_pop_current (surface);
+    
+    return ret;
+}
+slim_hidden_def(glitz_surface_release_tex_image);

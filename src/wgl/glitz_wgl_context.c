@@ -180,6 +180,7 @@ glitz_wgl_context_get (glitz_wgl_screen_info_t          *screen_info,
     context->backend.gl = &_glitz_wgl_gl_proc_address;
 
     context->backend.create_pbuffer = glitz_wgl_create_pbuffer;
+    context->backend.create_pixmap = NULL;
     context->backend.destroy = glitz_wgl_destroy;
     context->backend.push_current = glitz_wgl_push_current;
     context->backend.pop_current = glitz_wgl_pop_current;
@@ -196,7 +197,12 @@ glitz_wgl_context_get (glitz_wgl_screen_info_t          *screen_info,
 
     context->backend.draw_buffer = _glitz_drawable_draw_buffer;
     context->backend.read_buffer = _glitz_drawable_read_buffer;
-
+    
+    context->backend.bind_tex_image = NULL;
+    context->backend.release_tex_image = NULL;
+    
+    context->backend.query_drawable = NULL;
+    
     context->backend.drawable_formats = screen_info->formats;
     context->backend.n_drawable_formats = screen_info->n_formats;
 

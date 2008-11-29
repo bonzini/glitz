@@ -138,6 +138,34 @@ glitz_create_pbuffer_drawable (glitz_drawable_t        *other,
 }
 slim_hidden_def(glitz_create_pbuffer_drawable);
 
+glitz_drawable_t *
+glitz_create_pixmap_drawable (glitz_drawable_t        *other,
+			      glitz_drawable_format_t *format,
+			      unsigned int             width,
+			      unsigned int            height)
+{
+    glitz_int_drawable_format_t *iformat;
+    glitz_drawable_t            *drawable;
+    
+    if (!other->backend->create_pixmap)
+	return NULL;
+
+    if (!_glitz_drawable_size_check (other, width, height))
+	return NULL;
+
+    if (format->id >= other->backend->n_drawable_formats)
+	return NULL;
+
+    iformat = &other->backend->drawable_formats[format->id];
+    if (!(iformat->types & GLITZ_DRAWABLE_TYPE_WINDOW_MASK))
+	return NULL;
+
+    drawable = other->backend->create_pixmap (other, format, width, height);
+
+    return drawable;
+}
+slim_hidden_def(glitz_create_pixmap_drawable);
+
 void
 glitz_drawable_destroy (glitz_drawable_t *drawable)
 {

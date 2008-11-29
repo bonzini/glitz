@@ -296,6 +296,7 @@ glitz_agl_context_get (glitz_agl_thread_info_t *thread_info,
     context->backend.gl = &_glitz_agl_gl_proc_address;
 
     context->backend.create_pbuffer = glitz_agl_create_pbuffer;
+    context->backend.create_pixmap = NULL;
     context->backend.destroy = glitz_agl_destroy;
     context->backend.push_current = glitz_agl_push_current;
     context->backend.pop_current = glitz_agl_pop_current;
@@ -309,10 +310,15 @@ glitz_agl_context_get (glitz_agl_thread_info_t *thread_info,
     context->backend.copy_context = _glitz_agl_copy_context;
     context->backend.make_current = _glitz_agl_make_current;
     context->backend.get_proc_address = _glitz_agl_context_get_proc_address;
-
+    
     context->backend.draw_buffer = _glitz_drawable_draw_buffer;
     context->backend.read_buffer = _glitz_drawable_read_buffer;
-
+    
+    context->backend.bind_tex_image = NULL;
+    context->backend.release_tex_image = NULL;
+    
+    context->backend.query_drawable = NULL;
+    
     context->backend.drawable_formats = NULL;
     context->backend.n_drawable_formats = 0;
 

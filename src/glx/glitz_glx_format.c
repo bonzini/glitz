@@ -68,7 +68,7 @@ _glitz_glx_format_compare (const void *elem1,
 	    score[i] += 5;
 
 	if (format[i]->d.depth_size)
-	    score[i] -= 5;
+	    score[i] -= 10;
 
 	if (format[i]->d.doublebuffer)
 	    score[i] -= 10;
@@ -125,7 +125,8 @@ _glitz_glx_query_formats (glitz_glx_screen_info_t *screen_info)
     format.types          = GLITZ_DRAWABLE_TYPE_WINDOW_MASK;
     format.d.id           = 0;
     format.d.color.fourcc = GLITZ_FOURCC_RGB;
-
+    format.rgb_texture    = 0;
+    
     for (i = 0; i < num_visuals; i++)
     {
 	int value;
@@ -262,11 +263,38 @@ _glitz_glx_query_formats_using_fbconfigs (glitz_glx_screen_info_t *screen_info)
 
 	format.d.id           = 0;
 	format.d.color.fourcc = GLITZ_FOURCC_RGB;
-
+	format.rgb_texture = 0;
+        
 	glx->get_fbconfig_attrib (display, fbconfigs[i], GLX_FBCONFIG_ID,
 				  &value);
 	format.u.uval = value;
 
+	glx->get_fbconfig_attrib (display, fbconfigs[i], 
+                              GLX_BIND_TO_TEXTURE_RGBA_EXT, &value);
+	if (value)
+	{
+	    format.texture_format = GLITZ_GL_TEXTURE_FORMAT_RGBA_EXT;
+	    format.rgb_texture = 1;
+	}
+	else
+	{
+	    glx->get_fbconfig_attrib (display, fbconfigs[i], 
+				      GLX_BIND_TO_TEXTURE_RGB_EXT, &value);
+	    if (value)
+	    {
+		format.texture_format = GLITZ_GL_TEXTURE_FORMAT_RGB_EXT;
+		format.rgb_texture = 1;
+	    }
+	}
+	
+	glx->get_fbconfig_attrib (display, fbconfigs[i], 
+                              GLX_BIND_TO_TEXTURE_TARGETS_EXT, &value);
+	format.texture_target = value;
+	
+	glx->get_fbconfig_attrib (display, fbconfigs[i], 
+				  GLX_BIND_TO_MIPMAP_TEXTURE_EXT, &value);
+	format.mipmap = value;
+	
 	glx->get_fbconfig_attrib (display, fbconfigs[i], GLX_RED_SIZE, &value);
 	format.d.color.red_size = (unsigned short) value;
 	glx->get_fbconfig_attrib (display, fbconfigs[i], GLX_GREEN_SIZE,
@@ -357,6 +385,21 @@ glitz_glx_query_formats (glitz_glx_screen_info_t *screen_info)
 	screen_info->formats[i].d.id = i;
 }
 
+/**
+ * glitz_glx_find_window_format:
+ * @display: an X Display
+ * @screen: X Screen number where the window will be displayed
+ * @mask: Format mask value
+ * @templ: Format template which is be used in matching the drawable format
+ * @count: Index number of found matching drawable format
+ *
+ * This function return the drawable format for a window or a pixmap that best 
+ * meets template format. The sort order of founds format follow GLX 1.3 
+ * specification, you can safely choose the first format found (0).
+ *
+ * Return value: The @count index format drawable which matches template or nil
+ *               if no format matches.
+ **/
 glitz_drawable_format_t *
 glitz_glx_find_window_format (Display                       *display,
 			      int                           screen,
@@ -379,6 +422,21 @@ glitz_glx_find_window_format (Display                       *display,
 }
 slim_hidden_def(glitz_glx_find_window_format);
 
+/**
+ * glitz_glx_find_pbuffer_format:
+ * @display: an X Display
+ * @screen: X Screen number where the window will be displayed
+ * @mask: Format mask value
+ * @templ: Format template which is be used in matching the drawable format
+ * @count: Index number of found matching drawable format
+ *
+ * This function return the drawable format for a pixel buffer object that best 
+ * meets template format. The sort order of founds format follow GLX 1.3 
+ * specification, you can safely choose the first format found (0).
+ *
+ * Return value: The @count index format drawable which matches template or nil
+ *               if no format matches.
+ **/
 glitz_drawable_format_t *
 glitz_glx_find_pbuffer_format (Display                       *display,
 			       int                           screen,
@@ -401,6 +459,17 @@ glitz_glx_find_pbuffer_format (Display                       *display,
 }
 slim_hidden_def(glitz_glx_find_pbuffer_format);
 
+/**
+ * glitz_glx_find_drawable_format_for_visual:
+ * @display: an X Display
+ * @screen: X Screen number where the window will be displayed
+ * @visual_id: X Visual ID which is be used in matching drawable format
+ *
+ * This function return the drawable format for a X Visual ID.
+ *
+ * Return value: The format drawable which correspond to the Visual ID. If no 
+ *               format is found the function return nil.
+ **/
 glitz_drawable_format_t *
 glitz_glx_find_drawable_format_for_visual (Display  *display,
 					   int       screen,
@@ -472,6 +541,17 @@ glitz_glx_find_drawable_format_for_visual (Display  *display,
 }
 slim_hidden_def(glitz_glx_find_drawable_format_for_visual);
 
+/**
+ * glitz_glx_get_visual_info_from_format:
+ * @display: an X Display
+ * @screen: X Screen number where the window will be displayed
+ * @format: Drawable format which is be used in matching Visual
+ *
+ * This function return the X Visual Info corresponding to drawable format.
+ *
+ * Return value: The matching X Visual Info, the function return nil if no
+ *               X Visual found.
+ **/
 XVisualInfo *
 glitz_glx_get_visual_info_from_format (Display                 *display,
 				       int                     screen,

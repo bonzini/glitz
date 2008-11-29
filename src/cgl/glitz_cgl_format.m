@@ -163,10 +163,11 @@ glitz_cgl_query_formats (glitz_cgl_thread_info_t *thread_info)
 	NSOpenGLPFAAlphaSize, (color_size <= 16) ? 1 : 8,
 	NSOpenGLPFAColorSize, (color_size <= 16) ? 16 : 32 };
 
-    format.types	  = GLITZ_DRAWABLE_TYPE_WINDOW_MASK;
-    format.d.id		  = 0;
-    format.d.color.fourcc = GLITZ_FOURCC_RGB;
-
+    format.types	    = GLITZ_DRAWABLE_TYPE_WINDOW_MASK;
+    format.d.id		    = 0;
+    format.d.color.fourcc   = GLITZ_FOURCC_RGB;
+    format.d.scanline_order = GLITZ_PIXEL_SCANLINE_ORDER_TOP_DOWN;
+    
     n_attribs_list = sizeof (_attribs_list) / sizeof (GLint *);
 
     for (i = 0; i < n_attribs_list; i++) {
@@ -223,6 +224,7 @@ glitz_cgl_query_formats (glitz_cgl_thread_info_t *thread_info)
 	format.d.color.blue_size = (unsigned short) value / 3;
 	value = glitz_cgl_describe_format (pixel_format, NSOpenGLPFADepthSize);
 	format.d.depth_size = (unsigned short) value;
+	format.d.depth = (unsigned short) value;
 	value = glitz_cgl_describe_format (pixel_format, NSOpenGLPFAStencilSize);
 	format.d.stencil_size = (unsigned short) value;
 

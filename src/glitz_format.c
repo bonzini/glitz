@@ -179,10 +179,10 @@ _glitz_add_drawable_formats (glitz_gl_proc_address_list_t *gl,
     {
 	glitz_int_drawable_format_t format;
 	glitz_drawable_format_t     d[] = {
-	    { 0, { GLITZ_FOURCC_RGB, 8, 8, 8, 0 }, 0,  0, 1, 0 },
-	    { 0, { GLITZ_FOURCC_RGB, 8, 8, 8, 8 }, 0,  0, 1, 0 },
-	    { 0, { GLITZ_FOURCC_RGB, 8, 8, 8, 0 }, 24, 8, 1, 1 },
-	    { 0, { GLITZ_FOURCC_RGB, 8, 8, 8, 8 }, 24, 8, 1, 1 }
+	    { 0, { GLITZ_FOURCC_RGB, 8, 8, 8, 0 }, 32, 0,  0, 1, 0, GLITZ_PIXEL_SCANLINE_ORDER_TOP_DOWN },
+	    { 0, { GLITZ_FOURCC_RGB, 8, 8, 8, 8 }, 32, 0,  0, 1, 0, GLITZ_PIXEL_SCANLINE_ORDER_TOP_DOWN },
+	    { 0, { GLITZ_FOURCC_RGB, 8, 8, 8, 0 }, 32, 24, 8, 1, 1, GLITZ_PIXEL_SCANLINE_ORDER_TOP_DOWN },
+	    { 0, { GLITZ_FOURCC_RGB, 8, 8, 8, 8 }, 32, 24, 8, 1, 1, GLITZ_PIXEL_SCANLINE_ORDER_TOP_DOWN }
 	};
 	int			    i;
 
@@ -446,3 +446,22 @@ glitz_find_pbuffer_format (glitz_drawable_t              *other,
 				       mask, &itempl, count);
 }
 slim_hidden_def(glitz_find_pbuffer_format);
+
+glitz_drawable_format_t *
+glitz_find_pixmap_format (glitz_drawable_t              *other,
+			   unsigned long                 mask,
+			   const glitz_drawable_format_t *templ,
+			   int                           count)
+{
+    glitz_int_drawable_format_t itempl;
+
+    glitz_drawable_format_copy (templ, &itempl.d, mask);
+
+    itempl.types = GLITZ_DRAWABLE_TYPE_WINDOW_MASK;
+    mask |= GLITZ_DRAWABLE_TYPE_WINDOW_MASK;
+
+    return glitz_drawable_format_find (other->backend->drawable_formats,
+				       other->backend->n_drawable_formats,
+				       mask, &itempl, count);
+}
+slim_hidden_def(glitz_find_pixmap_format);

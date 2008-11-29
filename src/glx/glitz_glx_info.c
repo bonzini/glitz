@@ -151,7 +151,11 @@ glitz_glx_get_proc_address (const char *name,
 		address = NULL;
 	}
     }
-
+    
+    if (!address) {
+	address = glXGetProcAddress ((glitz_gl_ubyte_t *) name);
+    }
+    
     return address;
 }
 
@@ -236,7 +240,22 @@ _glitz_glx_proc_address_lookup (glitz_glx_screen_info_t *screen_info)
 	}
     } else
 	screen_info->glx_feature_mask &= ~GLITZ_GLX_FEATURE_PBUFFER_MASK;
-
+    
+    if (screen_info->glx_feature_mask & GLITZ_GLX_FEATURE_TEXTURE_FROM_PIXMAP_MASK)
+    {
+	screen_info->glx.bind_tex_image = (glitz_glx_bind_tex_image_t)
+	    glitz_glx_get_proc_address ("glXBindTexImageEXT",
+					(void *) screen_info);
+	
+	screen_info->glx.release_tex_image = (glitz_glx_release_tex_image_t)
+	    glitz_glx_get_proc_address ("glXReleaseTexImageEXT",
+					(void *) screen_info);
+	
+	if (!screen_info->glx.bind_tex_image || !screen_info->glx.release_tex_image)
+	    screen_info->glx_feature_mask &=
+				~GLITZ_GLX_FEATURE_TEXTURE_FROM_PIXMAP_MASK;
+    }
+    
     if (screen_info->glx_feature_mask &
 	GLITZ_GLX_FEATURE_MAKE_CURRENT_READ_MASK) {
 	if (screen_info->glx_version >= 1.3f) {
@@ -521,15 +540,20 @@ glitz_glx_screen_info_get (Display *display,
     screen_info->glx_feature_mask = 0;
 
     if (glXQueryExtension (display, &error_base, &event_base)) {
-	int major, minor;
-
-	if (glXQueryVersion (display, &major, &minor)) {
-	    screen_info->glx_version = major + minor / 10.0f;
-	    if (major > 1 || (major > 0 || minor >= 2)) {
-		glitz_glx_query_extensions (screen_info,
-					    screen_info->glx_version);
-		_glitz_glx_proc_address_lookup (screen_info);
-		glitz_glx_query_formats (screen_info);
+	const char* version = glXGetClientString(display, GLX_VERSION);
+	if (version) {
+	    int major, minor;
+	    char* dot = strstr (version, ".");
+	    if (dot) {
+		minor = atoi(dot + 1);
+		major = atoi(version);
+		screen_info->glx_version = major + minor / 10.0f;
+		if (major > 1 || (major > 0 || minor >= 2)) {
+		    glitz_glx_query_extensions (screen_info,
+						screen_info->glx_version);
+		    _glitz_glx_proc_address_lookup (screen_info);
+		    glitz_glx_query_formats (screen_info);
+		}
 	    }
 	}
     }
@@ -563,6 +587,18 @@ _glitz_glx_screen_destroy (glitz_glx_screen_info_t *screen_info)
     free (screen_info);
 }
 
+/**
+ * glitz_glx_init:
+ * @gl_library: OpenGL library file location.
+ *
+ * This function provide the possibility to use an alternate OpenGL library 
+ * instead the system default. The call of this function is necessary only in 
+ * this case, if you want to use the default OpenGL system library you can 
+ * ignore it.
+ * This function must be called before any operations with glitz, generally in 
+ * the beginning of the application. In more glitz_fini() must be called when
+ * all glitz operations are terminated.
+ **/
 void
 glitz_glx_init (const char *gl_library)
 {
@@ -570,6 +606,12 @@ glitz_glx_init (const char *gl_library)
 }
 slim_hidden_def(glitz_glx_init);
 
+/**
+ * glitz_glx_fini:
+ *
+ * This function determine the end of use of specific opengl library specified
+ * with glitz_glx_init () or the end of use of system default library.
+ **/
 void
 glitz_glx_fini (void)
 {
@@ -579,6 +621,16 @@ glitz_glx_fini (void)
 }
 slim_hidden_def(glitz_glx_fini);
 
+/**
+ * glitz_glx_set_render_type:
+ * @display: an X Display
+ * @screen: X Screen number which we want the rendering type.
+ * @direct: Indicate if we use direct (TRUE) or indirect (FALSE) rendering 
+ *
+ * Specifies whether rendering is to be done with a direct connection to the 
+ * graphics system if possible or through the X server.
+ * If this function is omitted glitz use by default the direct rendering.
+ **/
 void
 glitz_glx_set_render_type (Display           *display,
                            int               screen,

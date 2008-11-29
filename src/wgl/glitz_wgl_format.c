@@ -138,7 +138,8 @@ _glitz_wgl_query_formats (glitz_wgl_screen_info_t *screen_info)
 	format.d.id = 0;
 	format.caveat = 0;
 	format.types = 0;
-
+	format.d.scanline_order = GLITZ_PIXEL_SCANLINE_ORDER_TOP_DOWN;
+	
 	if (!DescribePixelFormat (screen_info->root_dc, i,
 				  sizeof (PIXELFORMATDESCRIPTOR), &pfd))
 	{
@@ -178,6 +179,7 @@ _glitz_wgl_query_formats (glitz_wgl_screen_info_t *screen_info)
 	format.d.color.fourcc = GLITZ_FOURCC_RGB;
 
 	format.d.depth_size = pfd.cDepthBits;
+	format.d.depth = format.d.depth_size;
 	format.d.stencil_size = pfd.cStencilBits;
 
 	format.d.doublebuffer = (pfd.dwFlags & PFD_DOUBLEBUFFER) != 0;
@@ -212,7 +214,8 @@ _glitz_wgl_query_formats_using_pixel_format (glitz_wgl_screen_info_t *screen_inf
 	format.d.id = 0;
 	format.types = 0;
 	format.d.color.fourcc = GLITZ_FOURCC_RGB;
-
+	format.d.scanline_order = GLITZ_PIXEL_SCANLINE_ORDER_TOP_DOWN;
+    
 #define ASK_QUESTION(q,a) (question=(q),wgl->get_pixel_format_attrib_iv (screen_info->root_dc, i, 0, 1, &question,(a)))
 
 	if (!ASK_QUESTION(WGL_SUPPORT_OPENGL_ARB, &answer)
@@ -268,7 +271,8 @@ _glitz_wgl_query_formats_using_pixel_format (glitz_wgl_screen_info_t *screen_inf
 	if (!ASK_QUESTION(WGL_DEPTH_BITS_ARB, &answer))
 	    continue;
 	format.d.depth_size = (unsigned short) answer;
-
+	format.d.depth = format.d.depth_size;
+	
 	if (!ASK_QUESTION(WGL_STENCIL_BITS_ARB, &answer))
 	    continue;
 	format.d.stencil_size = (unsigned short) answer;
