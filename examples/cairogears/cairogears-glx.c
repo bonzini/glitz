@@ -176,7 +176,6 @@ main (int argc, char **argv) {
 	XSelectInput (dpy, win, StructureNotifyMask);
 	
     } else {
-	int i;
 
 	xsh.flags = PSize;
 	xsh.width = width;
@@ -185,24 +184,16 @@ main (int argc, char **argv) {
 	xsh.y = 0;
 
 	mask = 0;
-
-      templ.doublebuffer = 1;
-      mask |= GLITZ_FORMAT_DOUBLEBUFFER_MASK;
-  
-      i = 0;
-	do {
-	  dformat = glitz_glx_find_window_format (dpy, DefaultScreen (dpy),
-						  mask, &templ, i++);
-	  if (!dformat) {
-	    dformat = glitz_glx_find_window_format (dpy, DefaultScreen (dpy),
-						    mask, &templ, 0);
-	    i = -1;
-	  }
-	  vinfo = glitz_glx_get_visual_info_from_format (dpy,
-						         DefaultScreen (dpy),
-						         dformat);
-	} while ((!vinfo || vinfo->depth != 32) && i != -1);
-  
+	
+	templ.doublebuffer = 1;
+	mask |= GLITZ_FORMAT_DOUBLEBUFFER_MASK;
+	
+	dformat = glitz_glx_find_window_format (dpy, DefaultScreen (dpy),
+						mask, &templ, 0);
+	
+	vinfo = glitz_glx_get_visual_info_from_format (dpy,
+						       DefaultScreen (dpy),
+						       dformat);
 	xswa.colormap =
 	    XCreateColormap (dpy,
 			     RootWindow (dpy, DefaultScreen (dpy)), 
