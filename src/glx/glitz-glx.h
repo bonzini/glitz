@@ -43,6 +43,10 @@ glitz_glx_init (const char *gl_library);
 void
 glitz_glx_fini (void);
 
+void
+glitz_glx_set_render_type (Display           *display,
+			   int		     screen,
+			   glitz_bool_t      direct);
 
 /* glitz_glx_format.c */
 
