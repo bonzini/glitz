@@ -1,0 +1,78 @@
+<!-- ##### SECTION Title ##### -->
+AGL Backend
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### FUNCTION glitz_agl_init ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION glitz_agl_fini ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION glitz_agl_find_window_format ##### -->
+<para>
+
+</para>
+
+@mask: 
+@templ: 
+@count: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_agl_find_pbuffer_format ##### -->
+<para>
+
+</para>
+
+@mask: 
+@templ: 
+@count: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_agl_create_drawable_for_window ##### -->
+<para>
+
+</para>
+
+@format: 
+@window: 
+@width: 
+@height: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_agl_create_pbuffer_drawable ##### -->
+<para>
+
+</para>
+
+@format: 
+@width: 
+@height: 
+@Returns: 
+
+

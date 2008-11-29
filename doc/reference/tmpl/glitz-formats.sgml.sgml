@@ -1,0 +1,228 @@
+<!-- ##### SECTION Title ##### -->
+glitz-formats.sgml
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### ENUM glitz_format_name_t ##### -->
+<para>
+
+</para>
+
+@GLITZ_STANDARD_ARGB32: 
+@GLITZ_STANDARD_RGB24: 
+@GLITZ_STANDARD_A8: 
+@GLITZ_STANDARD_A1: 
+
+<!-- ##### MACRO GLITZ_FORMAT_ID_MASK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GLITZ_FORMAT_RED_SIZE_MASK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GLITZ_FORMAT_GREEN_SIZE_MASK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GLITZ_FORMAT_BLUE_SIZE_MASK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GLITZ_FORMAT_ALPHA_SIZE_MASK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### TYPEDEF glitz_format_id_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF glitz_fourcc_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### MACRO GLITZ_FORMAT_FOURCC_MASK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GLITZ_FOURCC ##### -->
+<para>
+
+</para>
+
+@a: 
+@b: 
+@c: 
+@d: 
+
+
+<!-- ##### MACRO GLITZ_FOURCC_RGB ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GLITZ_FOURCC_YV12 ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GLITZ_FOURCC_YUY2 ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### STRUCT glitz_color_format_t ##### -->
+<para>
+
+</para>
+
+@fourcc: 
+@red_size: 
+@green_size: 
+@blue_size: 
+@alpha_size: 
+
+<!-- ##### MACRO GLITZ_FORMAT_DEPTH_SIZE_MASK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GLITZ_FORMAT_STENCIL_SIZE_MASK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GLITZ_FORMAT_DOUBLEBUFFER_MASK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GLITZ_FORMAT_SAMPLES_MASK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GLITZ_FORMAT_Y_INVERTED_MASK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### STRUCT glitz_drawable_format_t ##### -->
+<para>
+
+</para>
+
+@id: 
+@color: 
+@depth_size: 
+@stencil_size: 
+@samples: 
+@doublebuffer: 
+@y_inverted: 
+
+<!-- ##### STRUCT glitz_format_t ##### -->
+<para>
+
+</para>
+
+@id: 
+@color: 
+
+<!-- ##### FUNCTION glitz_find_standard_format ##### -->
+<para>
+
+</para>
+
+@drawable: 
+@format_name: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_find_format ##### -->
+<para>
+
+</para>
+
+@drawable: 
+@mask: 
+@templ: 
+@count: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_find_drawable_format ##### -->
+<para>
+
+</para>
+
+@other: 
+@mask: 
+@templ: 
+@count: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_find_pbuffer_format ##### -->
+<para>
+
+</para>
+
+@other: 
+@mask: 
+@templ: 
+@count: 
+@Returns: 
+
+

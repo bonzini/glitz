@@ -1,0 +1,139 @@
+<!-- ##### SECTION Title ##### -->
+Buffer
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### TYPEDEF glitz_buffer_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ENUM glitz_buffer_hint_t ##### -->
+<para>
+
+</para>
+
+@GLITZ_BUFFER_HINT_STREAM_DRAW: 
+@GLITZ_BUFFER_HINT_STREAM_READ: 
+@GLITZ_BUFFER_HINT_STREAM_COPY: 
+@GLITZ_BUFFER_HINT_STATIC_DRAW: 
+@GLITZ_BUFFER_HINT_STATIC_READ: 
+@GLITZ_BUFFER_HINT_STATIC_COPY: 
+@GLITZ_BUFFER_HINT_DYNAMIC_DRAW: 
+@GLITZ_BUFFER_HINT_DYNAMIC_READ: 
+@GLITZ_BUFFER_HINT_DYNAMIC_COPY: 
+
+<!-- ##### ENUM glitz_buffer_access_t ##### -->
+<para>
+
+</para>
+
+@GLITZ_BUFFER_ACCESS_READ_ONLY: 
+@GLITZ_BUFFER_ACCESS_WRITE_ONLY: 
+@GLITZ_BUFFER_ACCESS_READ_WRITE: 
+
+<!-- ##### FUNCTION glitz_vertex_buffer_create ##### -->
+<para>
+
+</para>
+
+@drawable: 
+@data: 
+@size: 
+@hint: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_pixel_buffer_create ##### -->
+<para>
+
+</para>
+
+@drawable: 
+@data: 
+@size: 
+@hint: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_buffer_create_for_data ##### -->
+<para>
+
+</para>
+
+@data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_buffer_destroy ##### -->
+<para>
+
+</para>
+
+@buffer: 
+
+
+<!-- ##### FUNCTION glitz_buffer_reference ##### -->
+<para>
+
+</para>
+
+@buffer: 
+
+
+<!-- ##### FUNCTION glitz_buffer_set_data ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@offset: 
+@size: 
+@data: 
+
+
+<!-- ##### FUNCTION glitz_buffer_get_data ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@offset: 
+@size: 
+@data: 
+
+
+<!-- ##### FUNCTION glitz_buffer_map ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@access: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_buffer_unmap ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@Returns: 
+
+

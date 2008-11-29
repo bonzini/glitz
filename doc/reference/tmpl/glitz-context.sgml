@@ -1,0 +1,157 @@
+<!-- ##### SECTION Title ##### -->
+Context
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### TYPEDEF glitz_context_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION glitz_context_create ##### -->
+<para>
+
+</para>
+
+@drawable: 
+@format: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_context_destroy ##### -->
+<para>
+
+</para>
+
+@context: 
+
+
+<!-- ##### FUNCTION glitz_context_reference ##### -->
+<para>
+
+</para>
+
+@context: 
+
+
+<!-- ##### FUNCTION glitz_context_copy ##### -->
+<para>
+
+</para>
+
+@src: 
+@dst: 
+@mask: 
+
+
+<!-- ##### USER_FUNCTION glitz_lose_current_function_t ##### -->
+<para>
+
+</para>
+
+@closure: 
+
+
+<!-- ##### FUNCTION glitz_context_set_user_data ##### -->
+<para>
+
+</para>
+
+@context: 
+@closure: 
+@lose_current: 
+
+
+<!-- ##### USER_FUNCTION glitz_function_pointer_t ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION glitz_context_get_proc_address ##### -->
+<para>
+
+</para>
+
+@context: 
+@name: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_context_make_current ##### -->
+<para>
+
+</para>
+
+@context: 
+@drawable: 
+
+
+<!-- ##### FUNCTION glitz_context_bind_texture ##### -->
+<para>
+
+</para>
+
+@context: 
+@texture: 
+
+
+<!-- ##### FUNCTION glitz_context_draw_buffers ##### -->
+<para>
+
+</para>
+
+@context: 
+@buffers: 
+@n: 
+
+
+<!-- ##### FUNCTION glitz_context_read_buffer ##### -->
+<para>
+
+</para>
+
+@context: 
+@buffer: 
+
+
+<!-- ##### FUNCTION glitz_set_rectangle ##### -->
+<para>
+
+</para>
+
+@dst: 
+@color: 
+@x: 
+@y: 
+@width: 
+@height: 
+
+
+<!-- ##### FUNCTION glitz_set_rectangles ##### -->
+<para>
+
+</para>
+
+@dst: 
+@color: 
+@rects: 
+@n_rects: 
+
+

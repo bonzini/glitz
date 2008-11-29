@@ -1,0 +1,155 @@
+<!-- ##### SECTION Title ##### -->
+GLX Backend
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### FUNCTION glitz_glx_init ##### -->
+<para>
+
+</para>
+
+@gl_library: 
+
+
+<!-- ##### FUNCTION glitz_glx_fini ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION glitz_glx_set_render_type ##### -->
+<para>
+
+</para>
+
+@display: 
+@screen: 
+@direct: 
+
+
+<!-- ##### FUNCTION glitz_glx_find_window_format ##### -->
+<para>
+
+</para>
+
+@display: 
+@screen: 
+@mask: 
+@templ: 
+@count: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_glx_find_pbuffer_format ##### -->
+<para>
+
+</para>
+
+@display: 
+@screen: 
+@mask: 
+@templ: 
+@count: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_glx_find_drawable_format_for_visual ##### -->
+<para>
+
+</para>
+
+@display: 
+@screen: 
+@visual_id: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_glx_get_visual_info_from_format ##### -->
+<para>
+
+</para>
+
+@display: 
+@screen: 
+@format: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_glx_get_xdrawable ##### -->
+<para>
+
+</para>
+
+@drawable: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_glx_create_drawable_for_window ##### -->
+<para>
+
+</para>
+
+@display: 
+@screen: 
+@format: 
+@window: 
+@width: 
+@height: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_glx_create_drawable_for_pixmap ##### -->
+<para>
+
+</para>
+
+@display: 
+@screen: 
+@format: 
+@pixmap: 
+@width: 
+@height: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_glx_create_pixmap_drawable ##### -->
+<para>
+
+</para>
+
+@display: 
+@screen: 
+@format: 
+@width: 
+@height: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_glx_create_pbuffer_drawable ##### -->
+<para>
+
+</para>
+
+@display: 
+@screen: 
+@format: 
+@width: 
+@height: 
+@Returns: 
+
+
