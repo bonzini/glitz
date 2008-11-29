@@ -8,8 +8,9 @@ glitz_def =
 libglitz_export_symbols =
 endif
 
+glitz_includedir = $(includedir)/glitz
 lib_LTLIBRARIES = libglitz.la
-include_HEADERS = glitz.h glitz_gl.h glitzint.h
+glitz_include_HEADERS = glitz.h 
 
 libglitz_la_SOURCES =	    \
 	glitz.h		    \
