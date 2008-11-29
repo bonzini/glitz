@@ -95,10 +95,24 @@ AC_C_BIGENDIAN
 dnl ===========================================================================
 
 GLITZ_LIB='-L$(top_builddir)/src -lglitz'
-GLITZ_INC='-I$(top_builddir)/src -I$(top_srcdir)/src'
+GLITZ_INC='-I$(top_builddir)/src'
 
 AC_SUBST(GLITZ_LIB)
 AC_SUBST(GLITZ_INC)
+
+dnl ===========================================================================
+
+PKG_PROG_PKG_CONFIG
+PKG_CHECK_EXISTS([libpng12], [enable_png=yes], [enable_png=no])
+
+if test $enable_png = yes ; then
+   PKG_CHECK_MODULES(LIBPNG, [libpng12])
+fi
+
+AM_CONDITIONAL(HAVE_LIBPNG, [test "x$enable_png" = xyes])
+
+AC_SUBST(LIBPNG_CFLAGS)
+AC_SUBST(LIBPNG_LIBS)
 
 dnl ===========================================================================
 
@@ -146,8 +160,8 @@ if test "x$use_glx" = "xyes"; then
 
     save_LIBS="$LIBS"
     save_CFLAGS="$CFLAGS"
-    CFLAGS="$CFLAGS $GLX_CFLAGS $gl_CFLAGS"
-    LIBS="$LIBS $GLX_LIBS $gl_LIBS"
+    CFLAGS="$CFLAGS $GLX_CFLAGS"
+    LIBS="$LIBS $GLX_LIBS"
 
     AC_MSG_CHECKING([for XTHREADS in Xlib])
     AC_RUN_IFELSE(
@@ -167,7 +181,9 @@ if test "x$use_glx" = "xyes"; then
       GLX_LIBS="$GLX_LIBS -lpthread"
       AC_DEFINE(XTHREADS, 1)
     fi
-
+    
+    GLITZ_GLX_CFLAGS='$(GLX_CFLAGS) -I$(top_builddir)/src/glx'
+    GLITZ_GLX_LIBS='$(GLX_LIBS) -L$(top_builddir)/src/glx -lglitz-glx'
     use_glx="yes"
   else
     use_glx="no"
@@ -182,6 +198,8 @@ fi
 
 AC_SUBST(GLX_CFLAGS)
 AC_SUBST(GLX_LIBS)
+AC_SUBST(GLITZ_GLX_CFLAGS)
+AC_SUBST(GLITZ_GLX_LIBS)
 
 dnl ===========================================================================
 
@@ -214,6 +232,8 @@ if test "x$use_agl" = "xyes"; then
       AC_DEFINE(PTHREADS, 1)
     fi
     AC_MSG_RESULT($use_pthreads)
+    GLITZ_AGL_CFLAGS='$(AGL_CFLAGS) -I$(top_builddir)/src/agl'
+    GLITZ_AGL_LIBS='$(AGL_LIBS) -L$(top_builddir)/src/agl -lglitz-agl'
   fi
 fi
 
@@ -225,6 +245,8 @@ fi
 
 AC_SUBST(AGL_CFLAGS)
 AC_SUBST(AGL_LIBS)
+AC_SUBST(GLITZ_AGL_CFLAGS)
+AC_SUBST(GLITZ_AGL_LIBS)
 
 
 dnl ===========================================================================
@@ -251,6 +273,8 @@ if test "x$use_egl" = "xyes"; then
     AC_DEFINE(PTHREADS, 1)
   fi
   AC_MSG_RESULT($use_pthreads)
+  GLITZ_EGL_CFLAGS='$(EGL_CFLAGS) -I$(top_builddir)/src/egl'
+  GLITZ_EGL_LIBS='$(EGL_LIBS) -L$(top_builddir)/src/egl -lglitz-egl'
 fi
 
 if test "x$use_egl" = "xyes"; then
@@ -261,6 +285,8 @@ fi
 
 AC_SUBST(EGL_CFLAGS)
 AC_SUBST(EGL_LIBS)
+AC_SUBST(GLITZ_EGL_CFLAGS)
+AC_SUBST(GLITZ_EGL_LIBS)
 
 
 dnl ===========================================================================
@@ -307,6 +333,9 @@ src/glx/glitz-glx.pc
 src/agl/glitz-agl.pc
 src/egl/glitz-egl.pc
 src/wgl/glitz-wgl.pc
+examples/Makefile
+examples/glitzinfo/Makefile
+examples/renderer-test/Makefile
 ])
 
 dnl ===========================================================================

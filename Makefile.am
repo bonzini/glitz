@@ -1,3 +1,3 @@
-SUBDIRS = . src
+SUBDIRS = . src examples
 
 EXTRA_DIST = COPYING
