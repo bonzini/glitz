@@ -68,7 +68,7 @@ _glitz_glx_format_compare (const void *elem1,
 	    score[i] += 5;
 
 	if (format[i]->d.depth_size)
-	    score[i] += 5;
+	    score[i] -= 5;
 
 	if (format[i]->d.doublebuffer)
 	    score[i] += 10;
