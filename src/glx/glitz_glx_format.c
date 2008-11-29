@@ -71,7 +71,7 @@ _glitz_glx_format_compare (const void *elem1,
 	    score[i] -= 10;
 
 	if (format[i]->d.doublebuffer)
-	    score[i] += 10;
+	    score[i] -= 10;
 
 	if (format[i]->d.samples > 1)
 	    score[i] -= (20 - format[i]->d.samples);
