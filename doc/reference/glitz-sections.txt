@@ -67,7 +67,8 @@ GLITZ_FORMAT_DEPTH_SIZE_MASK
 GLITZ_FORMAT_STENCIL_SIZE_MASK
 GLITZ_FORMAT_DOUBLEBUFFER_MASK
 GLITZ_FORMAT_SAMPLES_MASK
-GLITZ_FORMAT_Y_INVERTED_MASK
+GLITZ_FORMAT_SCANLINE_ORDER_MASK
+GLITZ_FORMAT_DEPTH_MASK
 glitz_drawable_format_t
 glitz_format_t
 glitz_find_standard_format
@@ -261,11 +262,13 @@ glitz_glx_find_window_format
 glitz_glx_find_pbuffer_format
 glitz_glx_find_drawable_format_for_visual
 glitz_glx_get_visual_info_from_format
-glitz_glx_get_xdrawable
 glitz_glx_create_drawable_for_window
 glitz_glx_create_drawable_for_pixmap
 glitz_glx_create_pixmap_drawable
 glitz_glx_create_pbuffer_drawable
+glitz_glx_get_display_from_drawable
+glitz_glx_get_screen_from_drawable
+glitz_glx_get_drawable_from_drawable
 </SECTION>
 
 <SECTION>

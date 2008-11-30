@@ -1,63 +1,14 @@
-<!-- ##### MACRO GLITZ_FEATURE_TEXTURE_FROM_PIXMAP_MASK ##### -->
-<para>
-
-</para>
-
-
 <!-- ##### MACRO GLITZ_FORMAT_Y_INVERTED_MASK ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### FUNCTION glitz_glx_create_drawable_for_pixmap ##### -->
-<para>
-
-</para>
-
-@display: 
-@screen: 
-@format: 
-@pixmap: 
-@width: 
-@height: 
-@Returns: 
-
-<!-- ##### FUNCTION glitz_glx_create_pixmap_drawable ##### -->
-<para>
-
-</para>
-
-@display: 
-@screen: 
-@format: 
-@width: 
-@height: 
-@Returns: 
-
 <!-- ##### FUNCTION glitz_glx_get_xdrawable ##### -->
 <para>
 
 </para>
 
-@drawable: 
-@Returns: 
-
-<!-- ##### FUNCTION glitz_surface_bind_tex_image ##### -->
-<para>
-
-</para>
-
-@surface: 
-@drawable: 
-@Returns: 
-
-<!-- ##### FUNCTION glitz_surface_release_tex_image ##### -->
-<para>
-
-</para>
-
-@surface: 
 @drawable: 
 @Returns: 
 

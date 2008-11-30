@@ -563,6 +563,18 @@ _glitz_glx_screen_destroy (glitz_glx_screen_info_t *screen_info)
     free (screen_info);
 }
 
+/**
+ * glitz_glx_init:
+ * @gl_library: OpenGL library file location.
+ *
+ * This function provide the possibility to use an alternate OpenGL library 
+ * instead the system default. The call of this function is necessary only in 
+ * this case, if you want to use the default OpenGL system library you can 
+ * ignore it.
+ * This function must be called before any operations with glitz, generally in 
+ * the beginning of the application. In more glitz_fini() must be called when
+ * all glitz operations are terminated.
+ **/
 void
 glitz_glx_init (const char *gl_library)
 {
@@ -570,6 +582,12 @@ glitz_glx_init (const char *gl_library)
 }
 slim_hidden_def(glitz_glx_init);
 
+/**
+ * glitz_glx_fini:
+ *
+ * This function determine the end of use of specific opengl library specified
+ * with glitz_glx_init () or the end of use of system default library.
+ **/
 void
 glitz_glx_fini (void)
 {
@@ -579,6 +597,16 @@ glitz_glx_fini (void)
 }
 slim_hidden_def(glitz_glx_fini);
 
+/**
+ * glitz_glx_set_render_type:
+ * @display: an X Display
+ * @screen: X Screen number which we want the rendering type.
+ * @direct: Indicate if we use direct (TRUE) or indirect (FALSE) rendering 
+ *
+ * Specifies whether rendering is to be done with a direct connection to the 
+ * graphics system if possible or through the X server.
+ * If this function is omitted glitz use by default the direct rendering.
+ **/
 void
 glitz_glx_set_render_type (Display           *display,
                            int               screen,

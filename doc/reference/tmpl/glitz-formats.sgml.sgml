@@ -152,6 +152,20 @@ glitz-formats.sgml
 
 
 
+<!-- ##### MACRO GLITZ_FORMAT_SCANLINE_ORDER_MASK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GLITZ_FORMAT_DEPTH_MASK ##### -->
+<para>
+
+</para>
+
+
+
 <!-- ##### STRUCT glitz_drawable_format_t ##### -->
 <para>
 
@@ -159,10 +173,12 @@ glitz-formats.sgml
 
 @id: 
 @color: 
+@depth: 
 @depth_size: 
 @stencil_size: 
 @samples: 
 @doublebuffer: 
+@scanline_order: 
 
 <!-- ##### STRUCT glitz_format_t ##### -->
 <para>
