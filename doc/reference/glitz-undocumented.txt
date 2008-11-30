@@ -1,7 +1,7 @@
-0% symbol docs coverage.
-1 symbols documented.
+6% symbol docs coverage.
+15 symbols documented.
 0 symbols incomplete.
-231 not documented.
+228 not documented.
 
 
 GLITZ_FEATURE_BLEND_COLOR_MASK
@@ -19,12 +19,14 @@ GLITZ_FEATURE_PIXEL_BUFFER_OBJECT_MASK
 GLITZ_FEATURE_TEXTURE_BORDER_CLAMP_MASK
 GLITZ_FEATURE_TEXTURE_ENV_COMBINE_MASK
 GLITZ_FEATURE_TEXTURE_ENV_DOT3_MASK
+GLITZ_FEATURE_TEXTURE_FROM_PIXMAP_MASK
 GLITZ_FEATURE_TEXTURE_MIRRORED_REPEAT_MASK
 GLITZ_FEATURE_TEXTURE_NON_POWER_OF_TWO_MASK
 GLITZ_FEATURE_TEXTURE_RECTANGLE_MASK
 GLITZ_FEATURE_VERTEX_BUFFER_OBJECT_MASK
 GLITZ_FORMAT_ALPHA_SIZE_MASK
 GLITZ_FORMAT_BLUE_SIZE_MASK
+GLITZ_FORMAT_DEPTH_MASK
 GLITZ_FORMAT_DEPTH_SIZE_MASK
 GLITZ_FORMAT_DOUBLEBUFFER_MASK
 GLITZ_FORMAT_FOURCC_MASK
@@ -32,6 +34,7 @@ GLITZ_FORMAT_GREEN_SIZE_MASK
 GLITZ_FORMAT_ID_MASK
 GLITZ_FORMAT_RED_SIZE_MASK
 GLITZ_FORMAT_SAMPLES_MASK
+GLITZ_FORMAT_SCANLINE_ORDER_MASK
 GLITZ_FORMAT_STENCIL_SIZE_MASK
 GLITZ_FOURCC
 GLITZ_FOURCC_RGB
@@ -61,6 +64,7 @@ glitz_buffer_reference
 glitz_buffer_set_data
 glitz_buffer_t
 glitz_buffer_unmap
+glitz_cgl_create_drawable_for_view
 glitz_cgl_create_pbuffer_drawable
 glitz_cgl_find_pbuffer_format
 glitz_cgl_find_window_format
@@ -124,15 +128,6 @@ glitz_function_pointer_t
 glitz_geometry_type_t
 glitz_get_pixels
 glitz_gl_string_t
-glitz_glx_create_drawable_for_window
-glitz_glx_create_pbuffer_drawable
-glitz_glx_find_drawable_format_for_visual
-glitz_glx_find_pbuffer_format
-glitz_glx_find_window_format
-glitz_glx_fini
-glitz_glx_get_visual_info_from_format
-glitz_glx_init
-glitz_glx_set_render_type
 glitz_int_t
 glitz_line_fixed_t
 glitz_lose_current_function_t
@@ -162,6 +157,7 @@ glitz_status_string
 glitz_status_t
 glitz_surface_attach
 glitz_surface_attributes_t
+glitz_surface_bind_tex_image
 glitz_surface_create
 glitz_surface_destroy
 glitz_surface_detach
@@ -173,6 +169,7 @@ glitz_surface_get_height
 glitz_surface_get_status
 glitz_surface_get_width
 glitz_surface_reference
+glitz_surface_release_tex_image
 glitz_surface_set_clip_region
 glitz_surface_set_component_alpha
 glitz_surface_set_dither

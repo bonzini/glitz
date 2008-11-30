@@ -219,3 +219,23 @@ Surface
 @Returns: 
 
 
+<!-- ##### FUNCTION glitz_surface_bind_tex_image ##### -->
+<para>
+
+</para>
+
+@surface: 
+@drawable: 
+@Returns: 
+
+
+<!-- ##### FUNCTION glitz_surface_release_tex_image ##### -->
+<para>
+
+</para>
+
+@surface: 
+@drawable: 
+@Returns: 
+
+
