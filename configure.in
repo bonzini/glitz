@@ -131,7 +131,7 @@ if test $enable_cairogears = yes ; then
    dnl Check cairo here, we do not want the -lglitz option.
    dnl However, we have to remove -I.../glitz manually.
    PKG_CHECK_MODULES(CAIRO, [cairo])
-   CAIRO_CFLAGS=`echo " $CAIRO_CFLAGS" | sed 's, -I[[^ ]]*/glitz *,,' `
+   CAIRO_CFLAGS=`echo " $CAIRO_CFLAGS " | sed 's, -I[[^ ]]*/glitz , ,'`
 fi
 
 AM_CONDITIONAL(HAVE_LIBPNG, [test "x$enable_png" = xyes])
