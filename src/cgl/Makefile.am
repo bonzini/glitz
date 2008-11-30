@@ -23,8 +23,6 @@ libglitz_cgl_la_LIBADD = $(GLITZ_LIB) $(CGL_LIBS)
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = glitz-cgl.pc
 
-endif
-
 EXTRA_DIST =		      \
 	glitz-cgl.h	      \
 	glitz_cgl_drawable.c  \
@@ -36,3 +34,6 @@ EXTRA_DIST =		      \
 	glitz_cglint.h	      \
 	glitz-cgl.pc.in	      \
 	glitz-cgl.man
+
+endif
+
