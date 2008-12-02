@@ -7,6 +7,7 @@
 #include <strings.h>
 
 cairo_t *cr;
+glitz_drawable_t *drawable;
 unsigned int frame_cnt = 0;
 char *program_name;
 
@@ -22,7 +23,8 @@ usage(void) {
 	    "\tGRAD   Trapezoid gradient test\n"
 	    "\tCOMP   Composite and transform test\n"
 	    "\tTEXT   Text path test\n"
-	    "\tSHADOW Composite with mask and convolution filter test\n\n",
+	    "\tSHADOW Composite with mask and convolution filter test\n"
+	    "\tOPENGL OpenGL drawing on a Glitz surface\n\n",
 	    program_name);
 }
 
@@ -109,6 +111,8 @@ get_test_type (const char *arg)
 	return TEXT_PATH_TYPE;
     } else if (!strcasecmp ("SHADOW", arg)) {
 	return SHADOW_TYPE;
+    } else if (!strcasecmp ("OPENGL", arg)) {
+	return OPENGL_TYPE;
     } else {
 	fprintf (stderr, "%s: unrecognized option `%s'\n",
 		 program_name, arg);
