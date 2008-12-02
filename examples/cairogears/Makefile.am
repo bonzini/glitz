@@ -2,7 +2,7 @@ INCLUDES = $(GLITZ_INC)
 
 noinst_PROGRAMS =
 
-CAIROGEARS_SRC = trap.c comp.c text.c shadow.c read_png.c \
+CAIROGEARS_SRC = trap.c comp.c text.c shadow.c \
 	fdface.c fdhand.c fdlogo.c common.c
 
 cairogears: $(OBJS)
