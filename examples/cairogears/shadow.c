@@ -30,7 +30,7 @@
 #include <cairo.h>
 #include <math.h>
 
-#include "read_png.h"
+#include "cairogears.h"
 #include "fdface.h"
 #include "fdhand.h"
 
@@ -116,10 +116,6 @@ render_clock (void)
 void
 shadow_setup (cairo_t *_cr, int w, int h)
 {
-  int image_width, image_height;
-  char *image_data;
-  cairo_surface_t *image;
-  
   clock_surface = cairo_surface_create_similar (cairo_get_target (_cr),
 						CAIRO_CONTENT_COLOR_ALPHA,
 						CLOCK_W, CLOCK_H);
@@ -127,78 +123,30 @@ shadow_setup (cairo_t *_cr, int w, int h)
   clock_bg_surface = cairo_surface_create_similar (cairo_get_target (_cr),
 						   CAIRO_CONTENT_COLOR_ALPHA,
 						   CLOCK_W, CLOCK_H);
-  if (read_png ("desktop.png", &image_data, &image_width, &image_height)) {
-      printf ("error reading desktop.png\n");
-      exit(1);
+
+
+  bg_surface = cairo_glitz_surface_create_from_png (_cr, "desktop.png",
+						    &bg_width, &bg_height);
+  if (cairo_surface_status (bg_surface)) {
+    printf ("error reading desktop.png\n");
+    exit(1);
   }
 
-  bg_width = image_width;
-  bg_height = image_height;
-
-  image = cairo_image_surface_create_for_data (image_data, 
-					       CAIRO_FORMAT_ARGB32,
-					       image_width, image_height,
-					       image_width * 4);
-
-  bg_surface = cairo_surface_create_similar (cairo_get_target (_cr),
-					     CAIRO_CONTENT_COLOR_ALPHA,
-					     image_width, image_height);
-
-  cr = cairo_create (bg_surface);
-  cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
-  cairo_set_source_surface (cr, image, 0.0, 0.0);
-  cairo_paint (cr);
-  cairo_destroy (cr);
-  
-  cairo_surface_destroy (image);
-  free (image_data);
-
-  if (read_png ("fakewin.png", &image_data, &image_width, &image_height)) {
-      printf ("error reading fakewin.png\n");
-      exit(1);
+  fakewin_surface = cairo_glitz_surface_create_from_png (_cr, "fakewin.png",
+							 &fakewin_width,
+							 &fakewin_height);
+  if (cairo_surface_status (fakewin_surface)) {
+    printf ("error reading fakewin.png\n");
+    exit(1);
   }
-
-  fakewin_width = image_width;
-  fakewin_height = image_height;
   
-  image = cairo_image_surface_create_for_data (image_data, 
-					       CAIRO_FORMAT_ARGB32,
-					       image_width, image_height,
-					       image_width * 4);
-
-  fakewin_surface = cairo_surface_create_similar (cairo_get_target (_cr),
-						  CAIRO_CONTENT_COLOR_ALPHA,
-						  image_width + 2,
-						  image_height + 2);
-
-  cr = cairo_create (fakewin_surface);
-  cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
-  cairo_set_source_surface (cr, image, 0.0, 0.0);
-  cairo_paint (cr);
-  cairo_destroy (cr);
-  
-  if (read_png ("glider.png", &image_data, &image_width, &image_height)) {
-      printf ("error reading glider.png\n");
-      exit (1);
+  glider_surface = cairo_glitz_surface_create_from_png (_cr, "glider.png",
+							&glider_width,
+							&glider_height);
+  if (cairo_surface_status (glider_surface)) {
+    printf ("error reading glider.png\n");
+    exit(1);
   }
-
-  glider_width = image_width;
-  glider_height = image_height;
-  
-  image = cairo_image_surface_create_for_data (image_data, 
-					       CAIRO_FORMAT_ARGB32,
-					       image_width, image_height,
-					       image_width * 4);
-
-  glider_surface = cairo_surface_create_similar (cairo_get_target (_cr),
-						 CAIRO_CONTENT_COLOR_ALPHA,
-						 image_width, image_height);
-
-  cr = cairo_create (glider_surface);
-  cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
-  cairo_set_source_surface (cr, image, 0.0, 0.0);
-  cairo_paint (cr);
-  cairo_destroy (cr);
 
   cr = cairo_create (clock_bg_surface);
   cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
@@ -220,9 +168,6 @@ shadow_setup (cairo_t *_cr, int w, int h)
 
   fdface_draw (cr, CLOCK_W, CLOCK_H);
   cairo_destroy (cr);
-
-  cairo_surface_destroy (image);
-  free (image_data);
 
   render_clock ();
   render_fakewin ();

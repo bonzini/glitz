@@ -53,5 +53,8 @@ glitz_format_t *get_glitz_format (glitz_drawable_format_t* dformat,
 cairo_surface_t * resize_glitz_drawable (glitz_drawable_t *drawable,
 				         glitz_drawable_format_t *dformat,
 					 int width, int height);
+cairo_surface_t *cairo_glitz_surface_create_from_png (cairo_t *glitz_target,
+						      char *name, int *width,
+						      int *height);
 
 #endif

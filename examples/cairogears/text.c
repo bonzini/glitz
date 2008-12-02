@@ -30,7 +30,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "read_png.h"
+#include "cairogears.h"
 
 float font_scale1, font_scale2,
   font_rotate1, font_rotate2,
@@ -47,35 +47,12 @@ cairo_t *cr;
 void
 text_setup (cairo_t *_cr, int w, int h)
 {
-  int image_width, image_height;
-  char *image_data;
-  cairo_surface_t *image;
-  
-  if (read_png ("orion.png", &image_data, &image_width, &image_height)) {
-    printf ("error reading orion.png\n");
+  bg_surface = cairo_glitz_surface_create_from_png (_cr, "orion.png",
+						    &bg_width, &bg_height);
+  if (cairo_surface_status (bg_surface)) {
+    printf ("error reading desktop.png\n");
     exit(1);
   }
-
-  bg_width = image_width;
-  bg_height = image_height;
-
-  image = cairo_image_surface_create_for_data (image_data, 
-					       CAIRO_FORMAT_ARGB32,
-					       image_width, image_height,
-					       image_width * 4);
-
-  bg_surface = cairo_surface_create_similar (cairo_get_target (_cr),
-					     CAIRO_CONTENT_COLOR_ALPHA,
-					     image_width, image_height);
-  
-  cr = cairo_create (bg_surface);
-  cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
-  cairo_set_source_surface (cr, image, 0.0, 0.0);
-  cairo_paint (cr);
-  cairo_destroy (cr);
-  
-  cairo_surface_destroy (image);
-  free (image_data);
 
   cr = _cr;
 

@@ -30,7 +30,7 @@
 #include <cairo.h>
 #include <math.h>
 
-#include "read_png.h"
+#include "cairogears.h"
 
 cairo_surface_t *bg_surface;
 cairo_surface_t *comp_surface;
@@ -42,61 +42,19 @@ cairo_t *cr;
 void
 comp_setup (cairo_t *_cr, int w, int h)
 {
-  int image_width, image_height;
-  char *image_data;
-  cairo_surface_t *image;
-
-  if (read_png ("bg.png", &image_data, &image_width, &image_height)) {
+  bg_surface = cairo_glitz_surface_create_from_png (_cr, "bg.png",
+						    &bg_width, &bg_height);
+  if (cairo_surface_status (bg_surface)) {
     printf ("error reading bg.png\n");
     exit(1);
   }
 
-  bg_width = image_width;
-  bg_height = image_height;
-
-  image = cairo_image_surface_create_for_data (image_data, 
-					       CAIRO_FORMAT_ARGB32,
-					       image_width, image_height,
-					       image_width * 4);
-
-  bg_surface = cairo_surface_create_similar (cairo_get_target (_cr),
-					     CAIRO_CONTENT_COLOR_ALPHA,
-					     image_width, image_height);
-  
-  cr = cairo_create (bg_surface);
-  cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
-  cairo_set_source_surface (cr, image, 0.0, 0.0);
-  cairo_paint (cr);
-  cairo_destroy (cr);
-  
-  cairo_surface_destroy (image);
-  free (image_data);
-
-  if (read_png ("fg.png", &image_data, &image_width, &image_height)) {
+  comp_surface = cairo_glitz_surface_create_from_png (_cr, "fg.png",
+						      &comp_width, &comp_height);
+  if (cairo_surface_status (comp_surface)) {
     printf ("error reading fg.png\n");
     exit(1);
   }
-  
-  comp_width = image_width;
-  comp_height = image_height;
-
-  image = cairo_image_surface_create_for_data (image_data, 
-					       CAIRO_FORMAT_ARGB32,
-					       image_width, image_height,
-					       image_width * 4);
-  
-  comp_surface = cairo_surface_create_similar (cairo_get_target (_cr),
-					       CAIRO_CONTENT_COLOR_ALPHA,
-					       image_width, image_height);
-
-  cr = cairo_create (comp_surface);
-  cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
-  cairo_set_source_surface (cr, image, 0.0, 0.0);
-  cairo_paint (cr);
-  cairo_destroy (cr);
-  
-  cairo_surface_destroy (image);
-  free (image_data);
 
   cr = _cr;
 }
