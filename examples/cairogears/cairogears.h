@@ -11,6 +11,7 @@
 #define WINDOW_HEIGHT 512
 
 extern cairo_t *cr;
+extern glitz_drawable_t *drawable;
 extern unsigned int frame_cnt;
 extern char *program_name;
 
@@ -29,6 +30,9 @@ void text2_render (int w, int h);
 void shadow_setup (cairo_t *cr, int w, int h);
 void shadow_render (int w, int h);
 
+void opengl_setup (cairo_t *cr, int w, int h);
+void opengl_render (int w, int h);
+
 enum {
     IMAGE_TYPE = 1,
     XRENDER_TYPE,
@@ -41,7 +45,8 @@ enum {
     STROKE_AND_FILL_TYPE_GRADIENT,
     COMPOSITE_AND_TRANSFORM_TYPE,
     TEXT_PATH_TYPE,
-    SHADOW_TYPE
+    SHADOW_TYPE,
+    OPENGL_TYPE
 };
 
 void usage(void);

@@ -51,7 +51,6 @@ main (int argc, char **argv)
 
     glitz_drawable_format_t templ;
     glitz_drawable_format_t *dformat;
-    glitz_drawable_t *drawable = NULL;
     unsigned long mask = 0;
     
     unsigned int width, height, window_width, window_height;
@@ -145,6 +144,9 @@ main (int argc, char **argv)
     case SHADOW_TYPE:
 	shadow_setup (cr, width, height);
 	break;
+    case OPENGL_TYPE:
+	opengl_setup (cr, width, height);
+	break;
     }
   
     signal (SIGALRM, alarmhandler);
@@ -184,6 +186,9 @@ main (int argc, char **argv)
 		break;
 	    case SHADOW_TYPE:
 		shadow_render (width, height);
+		break;
+	    case OPENGL_TYPE:
+		opengl_render (width, height);
 		break;
 	    }
 
