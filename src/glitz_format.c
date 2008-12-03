@@ -181,6 +181,12 @@ _glitz_add_drawable_formats (glitz_gl_proc_address_list_t *gl,
 	glitz_drawable_format_t     d[] = {
 	    { 0, { GLITZ_FOURCC_RGB, 8, 8, 8, 0 }, 0,  0, 1, 0, 32, GLITZ_PIXEL_SCANLINE_ORDER_TOP_DOWN },
 	    { 0, { GLITZ_FOURCC_RGB, 8, 8, 8, 8 }, 0,  0, 1, 0, 32, GLITZ_PIXEL_SCANLINE_ORDER_TOP_DOWN },
+	    { 0, { GLITZ_FOURCC_RGB, 8, 8, 8, 0 }, 16, 0, 1, 0, 32, GLITZ_PIXEL_SCANLINE_ORDER_TOP_DOWN },
+	    { 0, { GLITZ_FOURCC_RGB, 8, 8, 8, 8 }, 16, 0, 1, 0, 32, GLITZ_PIXEL_SCANLINE_ORDER_TOP_DOWN },
+	    { 0, { GLITZ_FOURCC_RGB, 8, 8, 8, 0 }, 16, 0, 1, 1, 32, GLITZ_PIXEL_SCANLINE_ORDER_TOP_DOWN },
+	    { 0, { GLITZ_FOURCC_RGB, 8, 8, 8, 8 }, 16, 0, 1, 1, 32, GLITZ_PIXEL_SCANLINE_ORDER_TOP_DOWN },
+	    { 0, { GLITZ_FOURCC_RGB, 8, 8, 8, 0 }, 24, 8, 1, 0, 32, GLITZ_PIXEL_SCANLINE_ORDER_TOP_DOWN },
+	    { 0, { GLITZ_FOURCC_RGB, 8, 8, 8, 8 }, 24, 8, 1, 0, 32, GLITZ_PIXEL_SCANLINE_ORDER_TOP_DOWN },
 	    { 0, { GLITZ_FOURCC_RGB, 8, 8, 8, 0 }, 24, 8, 1, 1, 32, GLITZ_PIXEL_SCANLINE_ORDER_TOP_DOWN },
 	    { 0, { GLITZ_FOURCC_RGB, 8, 8, 8, 8 }, 24, 8, 1, 1, 32, GLITZ_PIXEL_SCANLINE_ORDER_TOP_DOWN }
 	};
@@ -276,11 +282,11 @@ glitz_drawable_format_find (glitz_int_drawable_format_t       *formats,
 		continue;
 
 	if (mask & GLITZ_FORMAT_DEPTH_SIZE_MASK)
-	    if (templ->d.depth_size != formats->d.depth_size)
+	    if (templ->d.depth_size > formats->d.depth_size)
 		continue;
 
 	if (mask & GLITZ_FORMAT_STENCIL_SIZE_MASK)
-	    if (templ->d.stencil_size != formats->d.stencil_size)
+	    if (templ->d.stencil_size > formats->d.stencil_size)
 		continue;
 
 	if (mask & GLITZ_FORMAT_DOUBLEBUFFER_MASK)
