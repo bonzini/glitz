@@ -79,6 +79,7 @@ _glitz_wgl_create_context (void                    *abstract_drawable,
 
     wglShareLists (screen_info->root_context, context->context);
 
+    context->initialized = 0;
     return (glitz_context_t *) context;
 }
 

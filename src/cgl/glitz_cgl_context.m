@@ -131,6 +131,7 @@ _glitz_cgl_create_context (void                    *abstract_drawable,
     _glitz_context_init (&context->base, &drawable->base);
 
     context->pbuffer = 0;
+    context->initialized = 0;
 
     [pool release];
     return (glitz_context_t *) context;
