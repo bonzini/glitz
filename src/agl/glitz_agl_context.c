@@ -220,10 +220,28 @@ _glitz_agl_make_current (void *abstract_drawable,
 	}
 	else
 	{
+	    GLint bufferRect[4];
 	    if (context->pbuffer) {
 		aglSetDrawable (context->context, NULL);
 		context->pbuffer = 0;
 	    }
+
+	    /* AGL adds an overlay surface to the window when we call
+	       aglSetDrawable.  For framebuffer drawables, however, we do not
+	       want it because it would prevent the real drawable from showing
+	       through.  Work around it by setting an empty AGL_BUFFER_RECT.  */
+	    if (drawable->base.backend->feature_mask
+		& GLITZ_FEATURE_FRAMEBUFFER_OBJECT_MASK) {
+	        bufferRect[0] = 0; // 0 = left edge
+	        bufferRect[1] = 0; // 0 = bottom edge
+	        bufferRect[2] = 0; // width of buffer rect
+	        bufferRect[3] = 0; // height of buffer rect
+	        aglSetInteger (context->context, AGL_BUFFER_RECT, bufferRect);
+	        aglEnable (context->context, AGL_BUFFER_RECT);
+	    } else {
+	        aglDisable (context->context, AGL_BUFFER_RECT);
+	    }
+
 	    aglSetDrawable (context->context, drawable->drawable);
 	}
 
