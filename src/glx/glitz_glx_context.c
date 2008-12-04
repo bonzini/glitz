@@ -139,6 +139,7 @@ _glitz_glx_create_context (void                    *abstract_drawable,
 				   context,
 				   !screen_info->indirect);
 
+    context->initialized = 0;
     return (glitz_context_t *) context;
 }
 

@@ -65,6 +65,7 @@ _glitz_egl_create_context (void                    *abstract_drawable,
 			       screen_info->egl_root_context,
 			       context);
 
+    context->initialized = 0;
     return (glitz_context_t *) context;
 }
 
