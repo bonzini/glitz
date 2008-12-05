@@ -188,9 +188,6 @@ cairo_glitz_surface_create_from_png (cairo_t *glitz_target,
 				     int *height)
 {
     cairo_surface_t *image_surface;
-    cairo_surface_t *glitz_surface;
-    cairo_t *cr;
-
     image_surface = cairo_image_surface_create_from_png (name);
     if (cairo_surface_status (image_surface))
 	return image_surface;
@@ -198,16 +195,26 @@ cairo_glitz_surface_create_from_png (cairo_t *glitz_target,
     *width = cairo_image_surface_get_width (image_surface);
     *height = cairo_image_surface_get_height (image_surface);
 
-    glitz_surface = cairo_surface_create_similar (cairo_get_target (glitz_target),
-						  CAIRO_CONTENT_COLOR_ALPHA,
-						  *width, *height);
+#if 0 && (CAIRO_VERSION_MAJOR > 1 || CAIRO_VERSION_MINOR > 8)
+    cairo_image_surface_set_cacheable (image_surface, CAIRO_CACHE_ENABLE_AUTO);
+    return image_surface;
+#else
+    {
+	cairo_surface_t *glitz_surface;
+	cairo_t *cr;
 
-    cr = cairo_create (glitz_surface);
-    cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
-    cairo_set_source_surface (cr, image_surface, 0.0, 0.0);
-    cairo_paint (cr);
-    cairo_destroy (cr);
-    cairo_surface_destroy (image_surface);
-    return glitz_surface;
+	glitz_surface = cairo_surface_create_similar (cairo_get_target (glitz_target),
+						      CAIRO_CONTENT_COLOR_ALPHA,
+						      *width, *height);
+
+	cr = cairo_create (glitz_surface);
+	cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
+	cairo_set_source_surface (cr, image_surface, 0.0, 0.0);
+	cairo_paint (cr);
+	cairo_destroy (cr);
+	cairo_surface_destroy (image_surface);
+	return glitz_surface;
+    }
+#endif
 }
 
