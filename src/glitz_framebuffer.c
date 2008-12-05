@@ -302,9 +302,12 @@ _glitz_fbo_make_current (void *abstract_drawable,
     glitz_fbo_drawable_t *drawable = (glitz_fbo_drawable_t *)
 	abstract_drawable;
 
+    GLITZ_GL_DRAWABLE (drawable->other);
+
     drawable->other->backend->make_current (drawable->other, abstract_context);
 
     _glitz_fbo_bind (drawable);
+    gl->viewport (0, 0, drawable->width, drawable->height);
 }
 
 static glitz_bool_t
