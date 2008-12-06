@@ -123,34 +123,12 @@ main (int argc, char **argv)
 	exit (1);
     }
 
-    if (drawable) {
 	surface = resize_glitz_drawable (drawable, dformat, width, height);
-    }
 
     cr = cairo_create (surface);
     cairo_set_tolerance (cr, 0.5);
 
-    switch (test_type) {
-    case STROKE_AND_FILL_TYPE:
-    case STROKE_AND_FILL_TYPE_GRADIENT:
-	trap_setup (cr, width, height);
-	break;
-    case COMPOSITE_AND_TRANSFORM_TYPE:
-	comp_setup (cr, width, height);
-	break;
-    case TEXT_PATH_TYPE:
-	text_setup (cr, width, height);
-	break;
-    case SHADOW_TYPE:
-	shadow_setup (cr, width, height);
-	break;
-    case OPENGL_TYPE:
-	opengl_setup (cr, width, height);
-	break;
-    }
-  
-    signal (SIGALRM, alarmhandler);
-    alarm (5);
+    setup (test_type, width, height);
 
     ShowWindow (window);
 
@@ -173,28 +151,7 @@ main (int argc, char **argv)
 		break;
 	    }
 	} else {
-	    switch (test_type) {
-	    case STROKE_AND_FILL_TYPE:
-	    case STROKE_AND_FILL_TYPE_GRADIENT:
-		trap_render (width, height, test_type == STROKE_AND_FILL_TYPE_GRADIENT);
-		break;
-	    case COMPOSITE_AND_TRANSFORM_TYPE:
-		comp_render (width, height);
-		break;
-	    case TEXT_PATH_TYPE:
-		text_render (width, height);
-		break;
-	    case SHADOW_TYPE:
-		shadow_render (width, height);
-		break;
-	    case OPENGL_TYPE:
-		opengl_render (width, height);
-		break;
-	    }
-
-	    glitz_drawable_swap_buffers (drawable);
-
-	    frame_cnt++;
+	    render (test_type, TRUE, width, height);
 	}
     }
   

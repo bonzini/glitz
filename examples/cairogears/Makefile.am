@@ -25,6 +25,17 @@ cairogears_agl_SOURCES = cairogears-agl.c $(CAIROGEARS_SRC)
 cairogears_agl_LDADD = $(GLITZ_LIB) $(GLITZ_AGL_LIBS) $(CARBON_LIBS) $(CAIRO_LIBS)
 endif
 
+if GLITZ_BUILD_CGL_BACKEND
+noinst_PROGRAMS += cairogears-cgl
+
+cairogears_cgl_CFLAGS = $(GLITZ_CGL_CFLAGS) $(CAIRO_CFLAGS)
+cairogears_cgl_OBJCFLAGS = $(GLITZ_CGL_CFLAGS) $(CAIRO_CFLAGS)
+
+cairogears_cgl_SOURCES = cairogears-cgl.m $(CAIROGEARS_SRC)
+
+cairogears_cgl_LDADD = $(GLITZ_LIB) $(GLITZ_CGL_LIBS) $(CARBON_LIBS) $(CAIRO_LIBS)
+endif
+
 if GLITZ_BUILD_GLX_BACKEND
 noinst_PROGRAMS += cairogears-glx
 

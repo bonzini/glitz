@@ -241,26 +241,7 @@ main (int argc, char **argv) {
     cr = cairo_create (surface);
     cairo_set_tolerance (cr, 0.5);
 
-    switch (test_type) {
-    case STROKE_AND_FILL_TYPE:
-	trap_setup (cr, width, height);
-	break;
-    case COMPOSITE_AND_TRANSFORM_TYPE:
-	comp_setup (cr, width, height);
-	break;
-    case TEXT_PATH_TYPE:
-	text_setup (cr, width, height);
-	break;
-    case SHADOW_TYPE:
-	shadow_setup (cr, width, height);
-	break;
-    case OPENGL_TYPE:
-	opengl_setup (cr, width, height);
-	break;
-    }
-  
-    signal (SIGALRM, alarmhandler);
-    alarm (5);
+    setup (test_type);
 
     XMapWindow (dpy, win);
 
@@ -299,25 +280,8 @@ main (int argc, char **argv) {
 		}
 	    }
 	} else {
-
-	    switch (test_type) {
-	    case STROKE_AND_FILL_TYPE:
-	    case STROKE_AND_FILL_TYPE_GRADIENT:
-		trap_render (width, height, test_type == STROKE_AND_FILL_TYPE_GRADIENT);
-		break;
-	    case COMPOSITE_AND_TRANSFORM_TYPE:
-		comp_render (width, height);
-		break;
-	    case TEXT_PATH_TYPE:
-		text_render (width, height);
-		break;
-	    case SHADOW_TYPE:
-		shadow_render (width, height);
-		break;
-	    case OPENGL_TYPE:
-		opengl_render (width, height);
-		break;
-	    }	    switch (output_type) {
+	    render (test_type, output_type == GLX_TYPE);
+       	    switch (output_type) {
 		
 #ifdef CAIRO_HAS_XLIB_SURFACE
 	    case XRENDER_TYPE:
@@ -350,15 +314,9 @@ main (int argc, char **argv) {
 		XClearWindow (dpy, win);
 		XFreePixmap (dpy, pixmap);
 	    } break;
-	    case GLX_TYPE:
-		glitz_drawable_swap_buffers (drawable);
-
-		break;
 	    }
 
 	    XSync (dpy, 0);
-
-	    frame_cnt++;
 	}
     }
 
