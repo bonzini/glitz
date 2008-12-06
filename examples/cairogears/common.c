@@ -40,6 +40,58 @@ void alarmhandler (int sig) {
     alarm(5);
 }
 
+void
+setup (int test_type, int width, int height)
+{
+    switch (test_type) {
+    case STROKE_AND_FILL_TYPE:
+	trap_setup (cr, width, height);
+	break;
+    case COMPOSITE_AND_TRANSFORM_TYPE:
+	comp_setup (cr, width, height);
+	break;
+    case TEXT_PATH_TYPE:
+	text_setup (cr, width, height);
+	break;
+    case SHADOW_TYPE:
+	shadow_setup (cr, width, height);
+	break;
+    case OPENGL_TYPE:
+	opengl_setup (cr, width, height);
+	break;
+    }
+  
+    signal (SIGALRM, alarmhandler);
+    alarm (5);
+}
+
+void
+render (int test_type, glitz_bool_t swap, int width, int height)
+{
+    switch (test_type) {
+    case STROKE_AND_FILL_TYPE:
+    case STROKE_AND_FILL_TYPE_GRADIENT:
+	trap_render (width, height, test_type == STROKE_AND_FILL_TYPE_GRADIENT);
+	break;
+    case COMPOSITE_AND_TRANSFORM_TYPE:
+	comp_render (width, height);
+	break;
+    case TEXT_PATH_TYPE:
+	text_render (width, height);
+	break;
+    case SHADOW_TYPE:
+	shadow_render (width, height);
+	break;
+    case OPENGL_TYPE:
+	opengl_render (width, height);
+	break;
+    }
+
+    if (swap)
+        glitz_drawable_swap_buffers (drawable);
+    frame_cnt++;
+}
+
 glitz_format_t*
 get_glitz_format (glitz_drawable_format_t* dformat,
                   glitz_drawable_t* drawable)

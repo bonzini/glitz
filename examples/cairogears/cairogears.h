@@ -15,6 +15,9 @@ extern glitz_drawable_t *drawable;
 extern unsigned int frame_cnt;
 extern char *program_name;
 
+void setup (int test_type, int w, int h);
+void render (int test_type, glitz_bool_t swap, int w, int h);
+
 void trap_setup (cairo_t *cr, int w, int h);
 void trap_render (int w, int h, int fill_gradient);
 
