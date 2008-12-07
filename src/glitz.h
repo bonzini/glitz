@@ -454,6 +454,16 @@ void
 glitz_texture_object_set_border_color (glitz_texture_object_t *texture,
 				       glitz_color_t          *color);
 
+void
+glitz_texture_object_pixel_to_texture_coord (glitz_texture_object_t *texture,
+					     double		    *u_pixel,
+					     double		    *v_pixel);
+
+void
+glitz_texture_object_texture_coord_to_pixel (glitz_texture_object_t *texture,
+					     double		    *u,
+					     double		    *v);
+
 typedef enum {
   GLITZ_TEXTURE_TARGET_2D   = 0,
   GLITZ_TEXTURE_TARGET_RECT = 1
@@ -502,6 +512,10 @@ glitz_context_make_current (glitz_context_t  *context,
 void
 glitz_context_bind_texture (glitz_context_t        *context,
 			    glitz_texture_object_t *texture);
+
+void
+glitz_context_unbind_texture (glitz_context_t        *context,
+			      glitz_texture_object_t *texture);
 
 void
 glitz_context_draw_buffers (glitz_context_t	          *context,

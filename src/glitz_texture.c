@@ -367,6 +367,24 @@ glitz_texture_object_create (glitz_surface_t *surface)
 }
 
 void
+glitz_texture_object_texture_coord_to_pixel (glitz_texture_object_t *texture,
+					     double		    *u,
+					     double		    *v)
+{
+    *u /= texture->surface->texture.texcoord_width_unit;
+    *v /= texture->surface->texture.texcoord_height_unit;
+}
+
+void
+glitz_texture_object_pixel_to_texture_coord (glitz_texture_object_t *texture,
+					     double		    *u_pixel,
+					     double		    *v_pixel)
+{
+    *u_pixel *= texture->surface->texture.texcoord_width_unit;
+    *v_pixel *= texture->surface->texture.texcoord_height_unit;
+}
+
+void
 glitz_texture_object_destroy (glitz_texture_object_t *texture)
 {
     texture->ref_count--;
