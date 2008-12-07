@@ -178,14 +178,22 @@ glitz_context_bind_texture (glitz_context_t	   *context,
 	glitz_context_make_current (context, context->drawable);
     }
 
-    gl->bind_texture (texture->surface->texture.target,
-		      texture->surface->texture.name);
-
+    glitz_texture_bind (gl, &texture->surface->texture);
     glitz_texture_ensure_parameters (gl,
 				     &texture->surface->texture,
 				     &texture->param);
 }
 slim_hidden_def(glitz_context_bind_texture);
+
+void
+glitz_context_unbind_texture (glitz_context_t	     *context,
+			      glitz_texture_object_t *texture)
+{
+    glitz_gl_proc_address_list_t *gl = context->drawable->backend->gl;
+
+    glitz_texture_unbind (gl, &texture->surface->texture);
+}
+slim_hidden_def(glitz_context_unbind_texture);
 
 void
 glitz_context_draw_buffers (glitz_context_t	          *context,
