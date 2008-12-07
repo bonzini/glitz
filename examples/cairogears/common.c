@@ -24,7 +24,8 @@ usage(void) {
 	    "\tCOMP   Composite and transform test\n"
 	    "\tTEXT   Text path test\n"
 	    "\tSHADOW Composite with mask and convolution filter test\n"
-	    "\tOPENGL OpenGL drawing on a Glitz surface\n\n",
+	    "\tOPENGL OpenGL drawing on a Glitz surface\n"
+	    "\tCUBE   OpenGL drawing using Glitz textures (broken for AGL)\n\n",
 	    program_name);
 }
 
@@ -59,6 +60,9 @@ setup (int test_type, int width, int height)
     case OPENGL_TYPE:
 	opengl_setup (cr, width, height);
 	break;
+    case CUBE_TYPE:
+	cube_setup (cr, width, height);
+	break;
     }
   
     signal (SIGALRM, alarmhandler);
@@ -84,6 +88,9 @@ render (int test_type, glitz_bool_t swap, int width, int height)
 	break;
     case OPENGL_TYPE:
 	opengl_render (width, height);
+	break;
+    case CUBE_TYPE:
+	cube_render (width, height);
 	break;
     }
 
@@ -165,6 +172,8 @@ get_test_type (const char *arg)
 	return SHADOW_TYPE;
     } else if (!strcasecmp ("OPENGL", arg)) {
 	return OPENGL_TYPE;
+    } else if (!strcasecmp ("CUBE", arg)) {
+	return CUBE_TYPE;
     } else {
 	fprintf (stderr, "%s: unrecognized option `%s'\n",
 		 program_name, arg);
