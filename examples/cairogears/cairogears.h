@@ -36,6 +36,9 @@ void shadow_render (int w, int h);
 void opengl_setup (cairo_t *cr, int w, int h);
 void opengl_render (int w, int h);
 
+void cube_setup (cairo_t *cr, int w, int h);
+void cube_render (int w, int h);
+
 enum {
     IMAGE_TYPE = 1,
     XRENDER_TYPE,
@@ -49,7 +52,8 @@ enum {
     COMPOSITE_AND_TRANSFORM_TYPE,
     TEXT_PATH_TYPE,
     SHADOW_TYPE,
-    OPENGL_TYPE
+    OPENGL_TYPE,
+    CUBE_TYPE
 };
 
 void usage(void);

@@ -148,6 +148,10 @@ main (int argc, char **argv) {
     else
 	templ.samples = 1;
     
+    templ.depth_size = 16;
+    if (test_type == CUBE_TYPE)
+	mask |= GLITZ_FORMAT_DEPTH_SIZE_MASK;
+
     mask |= GLITZ_FORMAT_SAMPLES_MASK;
     
     if ((dpy = XOpenDisplay (NULL)) == NULL) {
