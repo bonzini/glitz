@@ -117,26 +117,27 @@ typedef enum {
   GLITZ_PIXEL_SCANLINE_ORDER_BOTTOM_UP
 } glitz_pixel_scanline_order_t;
 
-#define GLITZ_FEATURE_TEXTURE_RECTANGLE_MASK        (1L <<  0)
-#define GLITZ_FEATURE_TEXTURE_NON_POWER_OF_TWO_MASK (1L <<  1)
-#define GLITZ_FEATURE_TEXTURE_MIRRORED_REPEAT_MASK  (1L <<  2)
-#define GLITZ_FEATURE_TEXTURE_BORDER_CLAMP_MASK     (1L <<  3)
-#define GLITZ_FEATURE_MULTISAMPLE_MASK              (1L <<  4)
-#define GLITZ_FEATURE_MULTISAMPLE_FILTER_HINT_MASK  (1L <<  5)
-#define GLITZ_FEATURE_MULTITEXTURE_MASK             (1L <<  6)
-#define GLITZ_FEATURE_TEXTURE_ENV_COMBINE_MASK      (1L <<  7)
-#define GLITZ_FEATURE_TEXTURE_ENV_DOT3_MASK         (1L <<  8)
-#define GLITZ_FEATURE_FRAGMENT_PROGRAM_MASK         (1L <<  9)
-#define GLITZ_FEATURE_VERTEX_BUFFER_OBJECT_MASK     (1L << 10)
-#define GLITZ_FEATURE_PIXEL_BUFFER_OBJECT_MASK      (1L << 11)
-#define GLITZ_FEATURE_PER_COMPONENT_RENDERING_MASK  (1L << 12)
-#define GLITZ_FEATURE_BLEND_COLOR_MASK              (1L << 13)
-#define GLITZ_FEATURE_PACKED_PIXELS_MASK            (1L << 14)
-#define GLITZ_FEATURE_MULTI_DRAW_ARRAYS_MASK        (1L << 15)
-#define GLITZ_FEATURE_FRAMEBUFFER_OBJECT_MASK       (1L << 16)
-#define GLITZ_FEATURE_COPY_SUB_BUFFER_MASK          (1L << 17)
-#define GLITZ_FEATURE_DIRECT_RENDERING_MASK         (1L << 18)
-
+typedef enum {
+  GLITZ_FEATURE_TEXTURE_RECTANGLE_MASK        = (1L <<  0),
+  GLITZ_FEATURE_TEXTURE_NON_POWER_OF_TWO_MASK = (1L <<  1),
+  GLITZ_FEATURE_TEXTURE_MIRRORED_REPEAT_MASK  = (1L <<  2),
+  GLITZ_FEATURE_TEXTURE_BORDER_CLAMP_MASK     = (1L <<  3),
+  GLITZ_FEATURE_MULTISAMPLE_MASK              = (1L <<  4),
+  GLITZ_FEATURE_MULTISAMPLE_FILTER_HINT_MASK  = (1L <<  5),
+  GLITZ_FEATURE_MULTITEXTURE_MASK             = (1L <<  6),
+  GLITZ_FEATURE_TEXTURE_ENV_COMBINE_MASK      = (1L <<  7),
+  GLITZ_FEATURE_TEXTURE_ENV_DOT3_MASK         = (1L <<  8),
+  GLITZ_FEATURE_FRAGMENT_PROGRAM_MASK         = (1L <<  9),
+  GLITZ_FEATURE_VERTEX_BUFFER_OBJECT_MASK     = (1L << 10),
+  GLITZ_FEATURE_PIXEL_BUFFER_OBJECT_MASK      = (1L << 11),
+  GLITZ_FEATURE_PER_COMPONENT_RENDERING_MASK  = (1L << 12),
+  GLITZ_FEATURE_BLEND_COLOR_MASK              = (1L << 13),
+  GLITZ_FEATURE_PACKED_PIXELS_MASK            = (1L << 14),
+  GLITZ_FEATURE_MULTI_DRAW_ARRAYS_MASK        = (1L << 15),
+  GLITZ_FEATURE_FRAMEBUFFER_OBJECT_MASK       = (1L << 16),
+  GLITZ_FEATURE_COPY_SUB_BUFFER_MASK          = (1L << 17),
+  GLITZ_FEATURE_DIRECT_RENDERING_MASK         = (1L << 18)
+} glitz_feature_t;
 
 /* glitz_format.c */
 
@@ -147,17 +148,25 @@ typedef enum {
   GLITZ_STANDARD_A1
 } glitz_format_name_t;
 
-#define GLITZ_FORMAT_ID_MASK         (1L <<  0)
-#define GLITZ_FORMAT_RED_SIZE_MASK   (1L <<  1)
-#define GLITZ_FORMAT_GREEN_SIZE_MASK (1L <<  2)
-#define GLITZ_FORMAT_BLUE_SIZE_MASK  (1L <<  3)
-#define GLITZ_FORMAT_ALPHA_SIZE_MASK (1L <<  4)
+typedef enum {
+  GLITZ_FORMAT_ID_MASK             = (1L <<  0),
+  GLITZ_FORMAT_RED_SIZE_MASK       = (1L <<  1),
+  GLITZ_FORMAT_GREEN_SIZE_MASK     = (1L <<  2),
+  GLITZ_FORMAT_BLUE_SIZE_MASK      = (1L <<  3),
+  GLITZ_FORMAT_ALPHA_SIZE_MASK     = (1L <<  4),
+  GLITZ_FORMAT_FOURCC_MASK         = (1L <<  5),
+  GLITZ_FORMAT_DEPTH_SIZE_MASK     = (1L <<  6),
+  GLITZ_FORMAT_STENCIL_SIZE_MASK   = (1L <<  7),
+  GLITZ_FORMAT_DOUBLEBUFFER_MASK   = (1L <<  8),
+  GLITZ_FORMAT_SAMPLES_MASK        = (1L <<  9),
+  GLITZ_FORMAT_SCANLINE_ORDER_MASK = (1L <<  10),
+  GLITZ_FORMAT_DEPTH_MASK          = (1L <<  11),
+  GLITZ_DRAWABLE_FORMAT_ALL_EXCEPT_ID_MASK = (1L << 12) - 2
+} glitz_format_mask_t;
 
 typedef unsigned long glitz_format_id_t;
 
 typedef unsigned int glitz_fourcc_t;
-
-#define GLITZ_FORMAT_FOURCC_MASK     (1L <<  5)
 
 #define GLITZ_FOURCC(a, b, c, d)                                \
     ((a) | (b) << 8 | (c) << 16 | ((glitz_fourcc_t) (d)) << 24)
@@ -173,13 +182,6 @@ typedef struct _glitz_color_format_t {
   unsigned short blue_size;
   unsigned short alpha_size;
 } glitz_color_format_t;
-
-#define GLITZ_FORMAT_DEPTH_SIZE_MASK              (1L <<  6)
-#define GLITZ_FORMAT_STENCIL_SIZE_MASK            (1L <<  7)
-#define GLITZ_FORMAT_DOUBLEBUFFER_MASK            (1L <<  8)
-#define GLITZ_FORMAT_SAMPLES_MASK                 (1L <<  9)
-#define GLITZ_FORMAT_SCANLINE_ORDER_MASK          (1L <<  10)
-#define GLITZ_FORMAT_DEPTH_MASK                   (1L <<  11)
 
 typedef struct _glitz_drawable_format_t {
   glitz_format_id_t        id;
