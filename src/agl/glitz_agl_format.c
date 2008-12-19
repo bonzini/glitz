@@ -257,6 +257,7 @@ glitz_agl_query_formats (glitz_agl_thread_info_t *thread_info)
 	format.d.color.green_size = (unsigned short) value;
 	aglDescribePixelFormat (pixel_format, AGL_BLUE_SIZE, &value);
 	format.d.color.blue_size = (unsigned short) value;
+	format.d.depth = format.d.color.red_size + format.d.color.green_size + value;
 	aglDescribePixelFormat (pixel_format, AGL_ALPHA_SIZE, &value);
 	format.d.color.alpha_size = (unsigned short) value;
 	aglDescribePixelFormat (pixel_format, AGL_DEPTH_SIZE, &value);

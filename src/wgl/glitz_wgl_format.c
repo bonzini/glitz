@@ -176,6 +176,7 @@ _glitz_wgl_query_formats (glitz_wgl_screen_info_t *screen_info)
 	format.d.color.green_size = pfd.cGreenBits;
 	format.d.color.blue_size = pfd.cBlueBits;
 	format.d.color.alpha_size = pfd.cAlphaBits;
+	format.d.depth = pfd.cRedBits + pfd.cGreenBits + pfd.cBlueBits;
 	format.d.color.fourcc = GLITZ_FOURCC_RGB;
 
 	format.d.depth_size = pfd.cDepthBits;
@@ -262,6 +263,7 @@ _glitz_wgl_query_formats_using_pixel_format (glitz_wgl_screen_info_t *screen_inf
 	if (!ASK_QUESTION(WGL_BLUE_BITS_ARB, &answer))
 	    continue;
 	format.d.color.blue_size = (unsigned short) answer;
+	format.d.depth = format.d.color.red_size + format.d.color.green_size + answer;
 
 	if (!ASK_QUESTION(WGL_ALPHA_BITS_ARB, &answer))
 	    continue;

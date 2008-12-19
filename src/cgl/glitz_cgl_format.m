@@ -222,6 +222,7 @@ glitz_cgl_query_formats (glitz_cgl_thread_info_t *thread_info)
 	format.d.color.red_size = (unsigned short) (value + 1) / 3;
 	format.d.color.green_size = (unsigned short) (value + 2) / 3;
 	format.d.color.blue_size = (unsigned short) value / 3;
+	format.d.depth = value;
 	value = glitz_cgl_describe_format (pixel_format, NSOpenGLPFADepthSize);
 	format.d.depth_size = (unsigned short) value;
 	value = glitz_cgl_describe_format (pixel_format, NSOpenGLPFAStencilSize);
