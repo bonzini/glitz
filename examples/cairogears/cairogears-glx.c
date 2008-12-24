@@ -140,6 +140,12 @@ main (int argc, char **argv) {
 	exit(1);
     }
 
+    if (output_type != GLX_TYPE && test_type >= OPENGL_TYPE) {
+	printf ("Sorry, this test only works with OpenGL!\n");
+	usage();
+	exit(1);
+    }
+
     window_width = width = WINDOW_WIDTH;
     window_height = height = WINDOW_HEIGHT;
     
