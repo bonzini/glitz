@@ -151,7 +151,11 @@ glitz_glx_get_proc_address (const char *name,
 		address = NULL;
 	}
     }
-
+    
+    if (!address) {
+	address = glXGetProcAddress ((glitz_gl_ubyte_t *) name);
+    }
+    
     return address;
 }
 
@@ -521,15 +525,20 @@ glitz_glx_screen_info_get (Display *display,
     screen_info->glx_feature_mask = 0;
 
     if (glXQueryExtension (display, &error_base, &event_base)) {
-	int major, minor;
-
-	if (glXQueryVersion (display, &major, &minor)) {
-	    screen_info->glx_version = major + minor / 10.0f;
-	    if (major > 1 || (major > 0 || minor >= 2)) {
-		glitz_glx_query_extensions (screen_info,
-					    screen_info->glx_version);
-		_glitz_glx_proc_address_lookup (screen_info);
-		glitz_glx_query_formats (screen_info);
+	const char* version = glXGetClientString(display, GLX_VERSION);
+	if (version) {
+	    int major, minor;
+	    char* dot = strstr (version, ".");
+	    if (dot) {
+		minor = atoi(dot + 1);
+		major = atoi(version);
+		screen_info->glx_version = major + minor / 10.0f;
+		if (major > 1 || (major > 0 || minor >= 2)) {
+		    glitz_glx_query_extensions (screen_info,
+						screen_info->glx_version);
+		    _glitz_glx_proc_address_lookup (screen_info);
+		    glitz_glx_query_formats (screen_info);
+		}
 	    }
 	}
     }
